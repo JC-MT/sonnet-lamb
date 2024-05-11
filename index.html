@@ -11,16 +11,18 @@
 <body>
   <header class="max-w-7xl mx-auto flex justify-between items-center p-4 md:py-9 font-normal">
     <a class="text-xl md:text-2xl" href="https://www.sonnetlamb.com" target="_self">SONNET LAMB</a>
-    <nav>
-      <ul class="hidden md:grid md:grid-flow-col">
-        <li><a class="text-sm px-2.5" href="#Home">Home</a></li>
-        <li><a class="text-sm px-2.5" href="#About">About</a></li>
-        <li><a class="text-sm px-2.5" href="#Gallery">Gallery</a></li>
-        <li><a class="text-sm px-2.5" href="#Reels">Reels</a></li>
-        <li><a class="text-sm px-2.5" href="#News">News</a></li>
-        <li><a class="text-sm px-2.5" href="#Contact">Contact</a></li>
+    <nav data-controller="menu">
+      <ul data-menu-target="navLinks"
+        class="transition-opacity duration-0 z-20 text-center pt-16 md:pt-0 absolute bg-white justify-center items-center left-0 top-0 h-screen w-screen md:h-full md:w-full opacity-0 md:opacity-100 md:relative md:grid md:grid-flow-col">
+        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Home">Home</a></li>
+        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#About">About</a></li>
+        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Gallery">Gallery</a></li>
+        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Reels">Reels</a></li>
+        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#News">News</a></li>
+        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Contact">Contact</a></li>
       </ul>
-      <figure class="size-10 flex flex-col justify-between px-[9px] py-2.5">
+      <figure data-action="click->menu#toggleMenu"
+        class="relative md:hidden z-20 size-10 flex flex-col justify-between px-[9px] py-2.5 cursor-pointer">
         <span class="bg-[#181818] w-full transition-all duration-200 h-0.5 rounded-sm"></span>
         <span class="bg-[#181818] w-full transition-all duration-200 h-0.5 rounded-sm"></span>
         <span class="bg-[#181818] w-full transition-all duration-200 h-0.5 rounded-sm"></span>
