@@ -14,12 +14,12 @@
     <nav data-controller="menu">
       <ul data-menu-target="navLinks"
         class="transition-opacity duration-0 z-20 text-center pt-16 md:pt-0 absolute bg-white justify-center items-center left-0 top-0 h-screen w-screen md:h-full md:w-full opacity-0 md:opacity-100 md:relative md:grid md:grid-flow-col">
-        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Home">Home</a></li>
-        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#About">About</a></li>
-        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Gallery">Gallery</a></li>
-        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Reels">Reels</a></li>
-        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#News">News</a></li>
-        <li><a class="text-xl/[50px] md:text-sm md:px-2.5" href="#Contact">Contact</a></li>
+        <li data-action="click->menu#handleRouting"><a class="text-xl/[50px] md:text-sm md:px-2.5" href="/">Home</a></li>
+        <li data-action="click->menu#handleRouting"><a class="text-xl/[50px] md:text-sm md:px-2.5" href="/About">About</a></li>
+        <li data-action="click->menu#handleRouting"><a class="text-xl/[50px] md:text-sm md:px-2.5" href="/Gallery">Gallery</a></li>
+        <li data-action="click->menu#handleRouting"><a class="text-xl/[50px] md:text-sm md:px-2.5" href="/Reels">Reels</a></li>
+        <li data-action="click->menu#handleRouting"><a class="text-xl/[50px] md:text-sm md:px-2.5" href="/News">News</a></li>
+        <li data-action="click->menu#handleRouting"><a class="text-xl/[50px] md:text-sm md:px-2.5" href="/Contact">Contact</a></li>
       </ul>
       <figure data-action="click->menu#toggleMenu"
         class="relative md:hidden z-20 size-10 flex flex-col justify-between px-[9px] py-2.5 cursor-pointer">
@@ -29,7 +29,7 @@
       </figure>
     </nav>
   </header>
-  <div id="app"></div>
+  <main id="main-page"></div>
   <script type="module" src="./src/main.js"></script>
 </body>
 
