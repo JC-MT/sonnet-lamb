@@ -6,7 +6,8 @@ const routes = {
 };
 
 export default class extends Controller {
-  static targets = ['navLinks'];
+  static targets = ['mobileMenu', 'animate'];
+  static values = { activeMenu: false };
 
   initialize() {
     this.handleLocation();
@@ -29,24 +30,25 @@ export default class extends Controller {
 
   handleRouting(e) {
     e.preventDefault();
-    window.history.pushState({}, '', e.target.href);
+    window.history.pushState({}, '', e.target.href || e.target.firstChild.href);
     this.handleLocation();
     window.innerWidth <= 767 ? this.toggleMenu() : null;
   }
 
   toggleMenu() {
-    const { classList } = this.navLinks;
-    classList.remove('duration-0');
+    this.activeMenuValue = !this.activeMenuValue;
+    this.mobileMenuTarget.dataset.active = this.activeMenuValue;
+    this.animateTargets.forEach((bar) => {
+      bar.dataset.active = this.activeMenuValue;
+    });
+
+    const { classList } = this.mobileMenuTarget;
     classList.add('duration-500');
-    classList.toggle('opacity-0');
+    classList.remove('duration-0');
 
     setTimeout(() => {
       classList.remove('duration-500');
       classList.add('duration-0');
     }, 500);
-  }
-
-  get navLinks() {
-    return this.navLinksTarget;
   }
 }
