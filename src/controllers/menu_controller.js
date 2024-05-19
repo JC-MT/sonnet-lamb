@@ -3,7 +3,9 @@ const routes = {
   404: './src/pages/404.html',
   '/': './src/pages/home.html',
   '/About': './src/pages/about.html',
-  '/Gallery': './src/pages/gallery.html'
+  '/Gallery': './src/pages/gallery.html',
+  '/Reels': './src/pages/reels.html',
+  '/News': './src/pages/news.html'
 };
 
 export default class extends Controller {
