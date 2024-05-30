@@ -2,7 +2,10 @@ import { Controller } from '@hotwired/stimulus';
 const routes = {
   404: './src/pages/404.html',
   '/': './src/pages/home.html',
-  '/About': './src/pages/about.html'
+  '/About': './src/pages/about.html',
+  '/Gallery': './src/pages/gallery.html',
+  '/Reels': './src/pages/reels.html',
+  '/News': './src/pages/news.html'
 };
 
 export default class extends Controller {
