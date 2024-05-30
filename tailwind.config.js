@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Brandon Thin']
+        sans: ['Brandon Thin'],
+        serif: ['Montserrat, sans-serif']
       },
       colors: customColors
     }
