@@ -1,11 +1,12 @@
 import { Controller } from '@hotwired/stimulus';
 const routes = {
-  404: './src/pages/404.html',
-  '/': './src/pages/home.html',
-  '/About': './src/pages/about.html',
-  '/Gallery': './src/pages/gallery.html',
-  '/Reels': './src/pages/reels.html',
-  '/News': './src/pages/news.html'
+  404: '/pages/404.html',
+  '/': '/pages/home.html',
+  '/About': '/pages/about.html',
+  '/Gallery': '/pages/gallery.html',
+  '/Reels': '/pages/reels.html',
+  '/News': '/pages/news.html',
+  '/Contact': '/pages/contact.html'
 };
 
 export default class extends Controller {
@@ -13,45 +14,57 @@ export default class extends Controller {
   static values = { activeMenu: false };
 
   initialize() {
-    this.handleLocation();
-    window.onpopstate = this.handleLocation;
+    this.mainPage = document.getElementById('main-page');
+    this.isMobileUser = () => window.innerWidth < 768;
+    this.getCurrentLocation();
+    window.onpopstate = this.getCurrentLocation.bind(this);
   }
 
-  handleLocation() {
+  getCurrentLocation() {
     const { pathname } = window.location;
-    const mainPage = document.getElementById('main-page');
     const route = routes[pathname] || routes[404];
     fetch(route)
       .then((response) => response.text())
       .then((html) => {
-        mainPage.innerHTML = html;
+        if (this.isMobileUser()) {
+          this.mainPage.innerHTML = html;
+        } else {
+          setTimeout(() => (this.mainPage.innerHTML = html), 500);
+        }
       })
       .catch((error) => {
         console.error('Failed to load the page:', error);
       });
   }
 
-  handleRouting(e) {
+  handleRouteRequest(e) {
     e.preventDefault();
-    window.history.pushState({}, '', e.target.href || e.target.firstChild.href);
-    this.handleLocation();
-    window.innerWidth <= 767 ? this.toggleMenu() : null;
-  }
+    const requestedHref = e.target.href || e.target.firstChild.href;
+    const { location, history } = window;
 
-  toggleMenu() {
+    if (requestedHref !== location.href) {
+      history.pushState({}, '', requestedHref);
+    } else {
+      this.isMobileUser() ? this.toggleMobileMenu() : null;
+      return;
+    }
+
+    this.isMobileUser() ? this.toggleMobileMenu() : this.handleOpacity();
+    this.getCurrentLocation();
+  }
+  
+  toggleMobileMenu() {
     this.activeMenuValue = !this.activeMenuValue;
     this.mobileMenuTarget.dataset.active = this.activeMenuValue;
     this.animateTargets.forEach((bar) => {
       bar.dataset.active = this.activeMenuValue;
     });
 
-    const { classList } = this.mobileMenuTarget;
-    classList.add('duration-500');
-    classList.remove('duration-0');
+    window.document.body.classList.toggle('overflow-y-hidden');
+  }
 
-    setTimeout(() => {
-      classList.remove('duration-500');
-      classList.add('duration-0');
-    }, 500);
+  handleOpacity() {
+    this.mainPage.classList.toggle('opacity-0');
+    setTimeout(() => this.mainPage.classList.toggle('opacity-0'), 500);
   }
 }
