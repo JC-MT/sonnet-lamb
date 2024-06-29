@@ -1,3 +1,4 @@
+import './styles/tailwind.css';
 import { Application } from '@hotwired/stimulus';
 import MenuController from './controllers/menu_controller';
 import SliderController from './controllers/slider_controller';
