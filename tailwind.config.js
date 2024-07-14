@@ -5,7 +5,7 @@ const customColors = {
 };
 
 export default {
-  content: ['./src/**/*.{html,js}', './index.html', './public/pages/*.html'],
+  content: ['./src/**/*.{html,js}', './*.{html,js}', './public/pages/*.html'],
   theme: {
     extend: {
       fontFamily: {
