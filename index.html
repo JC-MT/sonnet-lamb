@@ -12,13 +12,12 @@
 </head>
 
 <body class="min-w-screen min-h-screen m-0">
-  <header
-    data-controller="menu"
+  <header data-controller="menu"
     class="w-full max-w-7xl mx-auto flex justify-between items-center p-4 md:py-9 relative md:z-10 bg-white">
-    <a data-action="click->menu#handleRouteRequest" class="text-xl/10 md:text-[22px]" href="/">SONNET LAMB</a>
+    <a data-action="click->menu#handleRouteRequest" class="text-xl/10 md:text-2xl" href="/">SONNET LAMB</a>
     <nav>
       <ul data-menu-target="mobileMenu" data-active="false"
-        class="transition-all duration-500 opacity-0 data-[active=true]:opacity-100 -z-20 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-16 md:pt-0 absolute bg-white justify-center items-center left-0 top-0 h-screen w-screen md:h-full md:w-full md:opacity-100! md:relative! md:grid md:grid-flow-col">
+        class="transition-all md:transition-none duration-500 opacity-0 data-[active=true]:opacity-100 -z-20 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-16 md:pt-0 absolute bg-white justify-center items-center left-0 top-0 h-screen w-screen md:h-full md:w-full md:opacity-100! md:relative! md:grid md:grid-flow-col">
         <li data-action="click->menu#handleRouteRequest"><a class="text-xl/[50px] md:text-sm px-2.5" href="/">Home</a>
         </li>
         <li data-action="click->menu#handleRouteRequest"><a class="text-xl/[50px] md:text-sm px-2.5" href="/About">About</a>
@@ -43,7 +42,8 @@
       </figure>
     </nav>
   </header>
-  <main id="main-page" class="transition-opacity duration-500 relative z-0 min-h-screen">
+  <main id="main-page"
+    class="transition-opacity duration-500 relative z-0 min-h-[calc(100vh_-_72px)] md:min-h-[calc(100vh_-_104px)]">
   </main>
   <footer class="grid gap-7 text-center px-4 py-16 bg-birch relative z-0">
     <div class="flex gap-3 justify-center">
