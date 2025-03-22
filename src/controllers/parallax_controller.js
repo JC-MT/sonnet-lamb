@@ -24,8 +24,8 @@ export default class extends Controller {
     let speed = 0.715 + window.scrollY / 20 / 1000;
 
     element.style.setProperty(
-      'transform',
-      `translateY(${window.scrollY * speed - 120}px)`
+      "transform",
+      `translateY(${window.scrollY * speed}px)`
     );
   }
 }
