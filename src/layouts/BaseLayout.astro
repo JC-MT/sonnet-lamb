@@ -1,0 +1,35 @@
+---
+const { title } = Astro.props;
+import Header from "../components/shared/Nav.astro";
+import Footer from "../components/shared/Footer.astro";
+import { ClientRouter } from "astro:transitions";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="preload"
+      href="./src/fonts/Brandon_thin.otf"
+      as="font"
+      type="font/otf"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;700&family=Montserrat:wght@200;400"
+    />
+    <title>Sonnet Lamb - {title}</title>
+    <ClientRouter />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

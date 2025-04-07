@@ -1,0 +1,16 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GalleryPage from "../components/pages/GalleryPage.astro";
+---
+
+<BaseLayout title="Gallery">
+  <GalleryPage />
+  <script>
+    import { Application } from "@hotwired/stimulus";
+    import SliderController from "../controllers/slider_controller";
+
+    window.Stimulus = Application.start();
+    Stimulus.register("slider", SliderController);
+  </script>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactPage from "../components/pages/ContactPage.astro";
+---
+
+<BaseLayout title="Contact">
+  <ContactPage />
+  <script>
+    import { Application } from "@hotwired/stimulus";
+    import EmailController from "../controllers/email_controller";
+
+    window.Stimulus = Application.start();
+    Stimulus.register("email", EmailController);
+  </script>
+</BaseLayout>

@@ -2,7 +2,8 @@
 
 @font-face {
   font-family: "Brandon Thin";
-  src: local("Brandon Thin"),
+  src:
+    local("Brandon Thin"),
     url("../fonts/Brandon_thin.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
@@ -11,6 +12,6 @@
 
 @theme {
   --color-birch: #efefef;
-  --font-sans: 'Brandon Thin';
-  --font-serif: 'Montserrat', sans-serif;
+  --font-sans: "Brandon Thin";
+  --font-serif: "Montserrat", sans-serif;
 }
