@@ -1,0 +1,56 @@
+<header
+  data-controller="menu"
+  class="w-full max-w-7xl mx-auto flex justify-between items-center p-4 md:py-9 relative md:z-10 bg-white"
+>
+  <a
+    data-action="click->menu#handleRouteRequest"
+    class="text-xl/10 md:text-2xl"
+    href="/">SONNET LAMB</a
+  >
+  <nav>
+    <ul
+      data-menu-target="mobileMenu"
+      data-active="false"
+      class="transition-all md:transition-none duration-500 opacity-0 data-[active=true]:opacity-100 -z-20 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-16 md:pt-0 absolute bg-white justify-center items-center left-0 top-0 h-screen w-screen md:h-full md:w-full md:opacity-100! md:relative! md:grid md:grid-flow-col"
+    >
+      <li data-action="click->menu#handleRouteRequest">
+        <a class="text-xl/[50px] md:text-sm px-2.5" href="/">Home</a>
+      </li>
+      <li data-action="click->menu#handleRouteRequest">
+        <a class="text-xl/[50px] md:text-sm px-2.5" href="/about">About</a>
+      </li>
+      <li data-action="click->menu#handleRouteRequest">
+        <a class="text-xl/[50px] md:text-sm px-2.5" href="/gallery">Gallery</a>
+      </li>
+      <li data-action="click->menu#handleRouteRequest">
+        <a class="text-xl/[50px] md:text-sm px-2.5" href="/reels">Reels</a>
+      </li>
+      <li data-action="click->menu#handleRouteRequest">
+        <a class="text-xl/[50px] md:text-sm px-2.5" href="/news">News</a>
+      </li>
+      <li data-action="click->menu#handleRouteRequest">
+        <a class="text-xl/[50px] md:text-sm px-2.5" href="/contact">Contact</a>
+      </li>
+    </ul>
+    <figure
+      data-action="click->menu#toggleMobileMenu"
+      class="absolute right-4 top-4 md:hidden z-20 size-10 flex flex-col justify-between px-[9px] py-2.5 cursor-pointer"
+    >
+      <span
+        data-menu-target="animate"
+        data-active="false"
+        class="data-[active=true]:-rotate-45 data-[active=true]:translate-y-[9px] bg-[#181818] w-full transition-all duration-300 h-0.5 rounded-xs"
+      ></span>
+      <span
+        data-menu-target="animate"
+        data-active="false"
+        class="data-[active=true]:opacity-0 bg-[#181818] w-full transition-all duration-300 h-0.5 rounded-xs"
+      ></span>
+      <span
+        data-menu-target="animate"
+        data-active="false"
+        class="data-[active=true]:rotate-45 data-[active=true]:translate-y-[-9px] bg-[#181818] w-full transition-all duration-300 h-0.5 rounded-xs"
+      ></span>
+    </figure>
+  </nav>
+</header>
