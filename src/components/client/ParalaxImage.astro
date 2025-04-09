@@ -1,0 +1,51 @@
+---
+const { imageSrc, imgAlt } = Astro.props
+---
+
+<paralax-image>
+    <img
+      parallax-image
+      class="w-full object-cover relative z-10 md:-z-10 md:translate-y-[-100px]"
+      src={imageSrc}
+      alt={imgAlt}
+    />
+  </paralax-image>
+  
+  <script>
+    class ParallaxImage extends HTMLElement {
+        private target: HTMLElement | null = null;
+        private handleScroll: () => void = () => {};
+  
+      connectedCallback() {
+        this.target = this.querySelector("[parallax-image]");
+        if (!this.target || window.innerWidth < 768) return;
+  
+        this.handleScroll = this.throttle(() => this.applyParallax());
+        window.addEventListener("scroll", this.handleScroll, { passive: true });
+      }
+  
+      applyParallax() {
+        if (!this.target) return;
+        const speed = 0.715 + window.scrollY / 20 / 1000;
+        this.target.style.transform = `translateY(${window.scrollY * speed}px)`;
+      }
+  
+      throttle(cb: Function) {
+        let waiting = false;
+        return () => {
+          if (!waiting) {
+            cb();
+            waiting = true;
+            requestAnimationFrame(() => (waiting = false));
+          }
+        };
+      }
+
+      disconnectedCallback() {
+        window.removeEventListener("scroll", this.handleScroll);
+      }
+    }
+  
+    customElements.define("paralax-image", ParallaxImage);
+  </script>
+  
