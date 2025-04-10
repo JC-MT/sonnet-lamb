@@ -53,8 +53,7 @@
   const {
     PUBLIC_EMAIL_JS_SERVICE_ID,
     PUBLIC_EMAIL_JS_TEMPLATE_ID,
-    PUBLIC_EMAIL_JS_PUBLIC_KEY,
-    PUBLIC_EMAIL_JS_EMAIL,
+    PUBLIC_EMAIL_JS_PUBLIC_KEY
   } = import.meta.env;
   import emailjs from "@emailjs/browser";
   emailjs.init({ publicKey: PUBLIC_EMAIL_JS_PUBLIC_KEY });
@@ -94,16 +93,16 @@
       if (!this.form) return;
 
       const user = this.form.querySelector(
-        '[data-email="name"]',
+        '[data-email="name"]'
       ) as HTMLInputElement;
       const email = this.form.querySelector(
-        '[data-email="email"]',
+        '[data-email="email"]'
       ) as HTMLInputElement;
       const subject = this.form.querySelector(
-        '[data-email="subject"]',
+        '[data-email="subject"]'
       ) as HTMLInputElement;
       const message = this.form.querySelector(
-        '[data-email="message"]',
+        '[data-email="message"]'
       ) as HTMLTextAreaElement;
 
       if (user && email && subject && message) {
@@ -113,14 +112,14 @@
           user_name: user?.value,
           user_email: email?.value,
           message: `Subject: ${subject?.value} - Message: ${message?.value}`,
-          reply_to: PUBLIC_EMAIL_JS_EMAIL,
+          reply_to: email?.value
         };
 
         try {
           const result = await emailjs.send(
             this.#serviceId,
             this.#templateId,
-            templateParams,
+            templateParams
           );
           console.log("EmailJS success", result.status, result.text);
           alert("Message successfully sent!");
