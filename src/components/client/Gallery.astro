@@ -45,7 +45,7 @@ const { images, scrollAmount } = Astro.props;
             src={image.src}
             alt={image.alt}
           />
-        )
+        ),
       )
     }
   </div>
@@ -84,12 +84,12 @@ const { images, scrollAmount } = Astro.props;
       if (this.slider && direction) {
         const operation = {
           next: this.slider.scrollLeft + Number(this.slider.dataset.scroll),
-          prev: this.slider.scrollLeft - Number(this.slider.dataset.scroll)
+          prev: this.slider.scrollLeft - Number(this.slider.dataset.scroll),
         };
 
         this.slider.scrollTo({
           left: operation[direction],
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }
@@ -98,13 +98,13 @@ const { images, scrollAmount } = Astro.props;
       if (this.prevButton) {
         this.prevButton.removeEventListener(
           "click",
-          this.handleNavigationClick
+          this.handleNavigationClick,
         );
       }
       if (this.nextButton) {
         this.nextButton.removeEventListener(
           "click",
-          this.handleNavigationClick
+          this.handleNavigationClick,
         );
       }
     }
