@@ -1,52 +1,12 @@
+---
+import ContactForm from "../client/ContactForm.astro";
+---
+
 <section class="w-full md:grid md:grid-cols-2 bg-birch h-full">
   <img
     alt="sonnet-lamb"
     class="w-full h-72 sm:h-96 md:h-[725px] object-cover md:object-[50%_75%]"
     src="https://static.wixstatic.com/media/15312d_87e0a00d25c44421845f8a6a2a0cc6cb~mv2_d_2240_3360_s_2.jpeg/v1/fill/w_980,h_1440,fp_0.51_0.52,q_85,usm_0.66_1.00_0.01,enc_auto/15312d_87e0a00d25c44421845f8a6a2a0cc6cb~mv2_d_2240_3360_s_2.jpeg"
   />
-  <form
-    data-controller="email"
-    class="w-full max-w-lg mx-auto flex flex-col justify-center items-center gap-3 font-serif px-3 py-5"
-  >
-    <h2 class="text-black font-light tracking-wider text-3xl md:text-4xl">
-      CONTACT ME
-    </h2>
-    <a
-      class="font-extralight tracking-wide"
-      href="mailto:sayhello@sonnetlamb.com"
-    >
-      sayhello@sonnetlamb.com
-    </a>
-    <div class="flex flex-col md:flex-row w-full gap-2">
-      <input
-        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
-        placeholder="Name"
-        type="text"
-        data-email-target="name"
-      />
-      <input
-        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
-        placeholder="Email"
-        type="email"
-        data-email-target="email"
-      />
-    </div>
-    <input
-      class="w-full text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
-      placeholder="Subject"
-      type="text"
-      data-email-target="subject"
-    />
-    <textarea
-      class="w-full text-base placeholder:text-black outline-hidden resize-none h-32 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
-      placeholder="Type your message here..."
-      data-email-target="message"></textarea>
-    <button
-      class="w-full text-xl p-2 mt-2 font-light uppercase text-white bg-black h-12 transition-opacity duration-500 opacity-100 hover:opacity-50"
-      type="submit"
-      data-action="click->email#createMessage"
-    >
-      Submit
-    </button>
-  </form>
+  <ContactForm />
 </section>
