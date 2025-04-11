@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^6.2.5",
-    "@hotwired/stimulus": "^3.2.2",
+    "@emailjs/browser": "^4.4.1",
     "astro": "^5.6.1",
     "tailwindcss": "^4.1.3"
   }

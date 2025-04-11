@@ -1,9 +1,14 @@
+---
+import ParalaxImage from "../client/ParalaxImage.astro";
+const { IMAGE_CDN_URL } = import.meta.env;
+---
+
 <section class="bg-birch relative z-10 md:-z-20">
   <div
     class="grid md:grid-cols-2 md:min-h-[750px] md:min-w-5xl mx-auto max-w-7xl md:px-4 md:border-y-[60px] md:border-birch"
   >
     <div
-      class="flex flex-col items-center justify-center gap-5 w-full p-10 bg-white text-center"
+      class="flex flex-col items-center justify-center gap-5 w-full p-10 bg-white text-center row-start-2 md:row-start-1"
     >
       <h1 class="text-7xl text-[#96C0E7] font-normal">SONNET <br />LAMB</h1>
       <h2 class="text-xl">Singer, Actor, Dancer</h2>
@@ -19,11 +24,9 @@
         href="/about">Learn More</a
       >
     </div>
-    <img
-      data-controller="parallax"
-      class="w-full row-start-1 md:col-start-2 object-cover relative z-10 md:-z-10 md:translate-y-[-100px]"
-      src="https://cdn.shopify.com/s/files/1/0585/2600/7392/files/15312d_8947a28f34a947c88e0eccf3d84f0f8e_mv2_d_3000_4500_s_4_2_00747f8b-0e54-4309-abba-e7c1c7f2ac9a.webp?v=1743806205"
-      alt=""
+    <ParalaxImage
+      imageAlt="Sonnet Headshot"
+      imageSrc=`${IMAGE_CDN_URL}15312d_8947a28f34a947c88e0eccf3d84f0f8e_mv2_d_3000_4500_s_4_2_00747f8b-0e54-4309-abba-e7c1c7f2ac9a.webp?v=1743806205`
     />
   </div>
   <div class="grid md:grid-cols-2 h-full z-10 relative">

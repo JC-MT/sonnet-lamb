@@ -3,3 +3,6 @@
 .netlify/
 dist/
 node_modules
+
+# Environment
+.env

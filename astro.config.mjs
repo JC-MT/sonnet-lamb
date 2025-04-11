@@ -7,6 +7,6 @@ export default defineConfig({
   base: "/",
   adapter: netlify(),
   vite: {
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });

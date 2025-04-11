@@ -6,11 +6,4 @@ import HomePage from "../components/pages/HomePage.astro";
 
 <BaseLayout title="Singer, Actor, Dancer">
   <HomePage />
-  <script>
-    import { Application } from "@hotwired/stimulus";
-    import ParallaxController from "../controllers/parallax_controller";
-
-    window.Stimulus = Application.start();
-    Stimulus.register("parallax", ParallaxController);
-  </script>
 </BaseLayout>

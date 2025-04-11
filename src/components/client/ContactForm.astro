@@ -1,0 +1,144 @@
+<contact-form
+  class="w-full max-w-lg mx-auto flex flex-col justify-center items-center gap-3 font-serif px-3 py-5"
+>
+  <h2 class="text-black font-light tracking-wider text-3xl md:text-4xl">
+    CONTACT ME
+  </h2>
+  <a
+    class="font-extralight tracking-wide"
+    href="mailto:sayhello@sonnetlamb.com"
+    rel="noopener"
+  >
+    sayhello@sonnetlamb.com
+  </a>
+  <form>
+    <div class="flex flex-col md:flex-row w-full gap-2">
+      <input
+        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+        placeholder="Name"
+        type="text"
+        data-email="name"
+        required
+      />
+      <input
+        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+        placeholder="Email"
+        type="email"
+        data-email="email"
+        required
+      />
+    </div>
+    <input
+      class="w-full text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+      placeholder="Subject"
+      type="text"
+      data-email="subject"
+      required
+    />
+    <textarea
+      class="w-full text-base placeholder:text-black outline-hidden resize-none h-32 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+      placeholder="Type your message here..."
+      data-email="message"
+      required></textarea>
+    <button
+      class="data-[loading='true']:pointer-events-none w-full text-xl p-2 mt-2 font-light uppercase text-white bg-black h-12 transition-opacity duration-300 opacity-100 hover:opacity-80 cursor-pointer"
+      type="submit"
+      data-loading="false"
+    >
+      Submit
+    </button>
+  </form>
+</contact-form>
+<script>
+  const {
+    PUBLIC_EMAIL_JS_SERVICE_ID,
+    PUBLIC_EMAIL_JS_TEMPLATE_ID,
+    PUBLIC_EMAIL_JS_PUBLIC_KEY
+  } = import.meta.env;
+  import emailjs from "@emailjs/browser";
+  emailjs.init({ publicKey: PUBLIC_EMAIL_JS_PUBLIC_KEY });
+
+  class ContactForm extends HTMLElement {
+    submitButton: HTMLButtonElement | null;
+    form: HTMLFormElement | null;
+    #serviceId: string;
+    #templateId: string;
+
+    constructor() {
+      super();
+      this.submitButton = null;
+      this.form = null;
+    }
+
+    connectedCallback() {
+      this.#serviceId = PUBLIC_EMAIL_JS_SERVICE_ID || "";
+      this.#templateId = PUBLIC_EMAIL_JS_TEMPLATE_ID || "";
+      this.submitButton = this.querySelector("button[type='submit']");
+      this.form = this.querySelector("form");
+
+      if (this.form) {
+        this.form.addEventListener("submit", this.sendEmail);
+      }
+    }
+
+    updateButtonState(state: boolean) {
+      if (this.submitButton) {
+        this.submitButton?.setAttribute("data-loading", `${state}`);
+        this.submitButton.textContent = state ? "Sending..." : "Submit";
+      }
+    }
+
+    sendEmail = async (e: SubmitEvent) => {
+      e.preventDefault();
+      if (!this.form) return;
+
+      const user = this.form.querySelector(
+        '[data-email="name"]'
+      ) as HTMLInputElement;
+      const email = this.form.querySelector(
+        '[data-email="email"]'
+      ) as HTMLInputElement;
+      const subject = this.form.querySelector(
+        '[data-email="subject"]'
+      ) as HTMLInputElement;
+      const message = this.form.querySelector(
+        '[data-email="message"]'
+      ) as HTMLTextAreaElement;
+
+      if (user && email && subject && message) {
+        this.updateButtonState(true);
+
+        const templateParams = {
+          user_name: user?.value,
+          user_email: email?.value,
+          message: `Subject: ${subject?.value} - Message: ${message?.value}`,
+          reply_to: email?.value
+        };
+
+        try {
+          const result = await emailjs.send(
+            this.#serviceId,
+            this.#templateId,
+            templateParams
+          );
+          console.log("EmailJS success", result.status, result.text);
+          alert("Message successfully sent!");
+          this.form.reset();
+        } catch (error) {
+          console.error("EmailJS error", error);
+          alert("Failed to send message. Try again later.");
+        } finally {
+          this.updateButtonState(false);
+        }
+      }
+    };
+
+    disconnectedCallback() {
+      if (this.form) {
+        this.form.removeEventListener("submit", this.sendEmail);
+      }
+    }
+  }
+
+  customElements.define("contact-form", ContactForm);
+</script>

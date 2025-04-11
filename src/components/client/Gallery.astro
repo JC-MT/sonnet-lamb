@@ -1,0 +1,114 @@
+---
+const { images, scrollAmount } = Astro.props;
+---
+
+<gallery-images class="relative w-full">
+  <button
+    data-direction="prev"
+    type="button"
+    class="rotate-180 absolute drop-shadow-xs w-6 h-10 top-[calc(50%-14px)] left-8 fill-white hover:cursor-pointer"
+    aria-label="Previous Item"
+    tabindex="0"
+  >
+    <svg width="24" height="40" viewBox="0 0 24 40">
+      <path
+        d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z"
+        transform="translate(-855 -230)"></path>
+    </svg>
+  </button>
+  <button
+    data-direction="next"
+    type="button"
+    class="absolute drop-shadow-xs w-6 h-10 top-[calc(50%-14px)] right-8 fill-white hover:cursor-pointer"
+    aria-label="Next Item"
+    tabindex="0"
+  >
+    <svg width="24" height="40" viewBox="0 0 24 40">
+      <path
+        d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z"
+        transform="translate(-855 -230)"></path>
+    </svg>
+  </button>
+  <div
+    data-scroll={scrollAmount}
+    data-slider
+    class="flex gap-7 snap-mandatory snap-x overflow-x-scroll w-full max-h-[500px] md:max-h-none"
+  >
+    {
+      images?.map(
+        (image: {
+          src: string | null | undefined;
+          alt: string | null | undefined;
+        }) => (
+          <img
+            class="snap-center object-cover"
+            src={image.src}
+            alt={image.alt}
+          />
+        ),
+      )
+    }
+  </div>
+</gallery-images>
+
+<script>
+  class Gallery extends HTMLElement {
+    private prevButton: HTMLButtonElement | null;
+    private nextButton: HTMLButtonElement | null;
+    private slider: HTMLElement | null;
+
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.prevButton = this.querySelector('button[data-direction="prev"]');
+      this.nextButton = this.querySelector('button[data-direction="next"]');
+      this.slider = this.querySelector("[data-slider]");
+
+      if (this.nextButton && this.prevButton && this.slider) {
+        this.prevButton.addEventListener("click", this.handleNavigationClick);
+        this.nextButton.addEventListener("click", this.handleNavigationClick);
+      }
+    }
+
+    handleNavigationClick = (e: MouseEvent) => {
+      const button = e.currentTarget as HTMLButtonElement;
+      if (button) {
+        const { direction } = button.dataset;
+        if (direction) this.scrollSlider(direction);
+      }
+    };
+
+    scrollSlider(direction: string) {
+      if (this.slider && direction) {
+        const operation = {
+          next: this.slider.scrollLeft + Number(this.slider.dataset.scroll),
+          prev: this.slider.scrollLeft - Number(this.slider.dataset.scroll),
+        };
+
+        this.slider.scrollTo({
+          left: operation[direction],
+          behavior: "smooth",
+        });
+      }
+    }
+
+    disconnectedCallback() {
+      if (this.prevButton) {
+        this.prevButton.removeEventListener(
+          "click",
+          this.handleNavigationClick,
+        );
+      }
+      if (this.nextButton) {
+        this.nextButton.removeEventListener(
+          "click",
+          this.handleNavigationClick,
+        );
+      }
+    }
+  }
+
+  customElements.define("gallery-images", Gallery);
+</script>
