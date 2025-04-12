@@ -2,7 +2,7 @@
 const { images, scrollAmount } = Astro.props;
 ---
 
-<gallery-images class="relative w-full">
+<gallery-images class="relative w-full block">
   <button
     data-direction="prev"
     type="button"
@@ -32,7 +32,7 @@ const { images, scrollAmount } = Astro.props;
   <div
     data-scroll={scrollAmount}
     data-slider
-    class="flex gap-7 snap-mandatory snap-x overflow-x-scroll w-full max-h-[500px] md:max-h-[600px] md:h-[600px]"
+    class="flex gap-7 snap-mandatory snap-x overflow-x-auto w-full h-[500px] sm:h-[600px]"
   >
     {
       images?.map(
@@ -41,7 +41,7 @@ const { images, scrollAmount } = Astro.props;
           alt: string | null | undefined;
         }) => (
           <img
-            class="snap-center object-cover"
+            class="snap-center object-cover min-w-full max-w-full sm:min-w-auto"
             src={image.src}
             alt={image.alt}
             width="auto"
