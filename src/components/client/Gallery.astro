@@ -44,6 +44,9 @@ const { images, scrollAmount } = Astro.props;
             class="snap-center object-cover"
             src={image.src}
             alt={image.alt}
+            width="auto"
+            height="auto"
+            loading="lazy"
           />
         ),
       )
