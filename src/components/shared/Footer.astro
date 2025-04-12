@@ -1,4 +1,8 @@
-<footer class="grid gap-7 text-center px-4 py-16 bg-birch relative z-0">
+---
+const { IMAGE_CDN_URL } = import.meta.env;
+---
+
+<footer class="grid gap-7 text-center px-4 py-16 bg-birch relative z-20">
   <div class="flex gap-3 justify-center">
     <a
       title="Link to Facebook Account"
@@ -7,10 +11,11 @@
       rel="noopener"
     >
       <img
+        src=`${IMAGE_CDN_URL}Facebook.png?v=1744375842`
         alt="facebook logo"
         width="20px"
         height="20px"
-        src="https://static.wixstatic.com/media/0fdef751204647a3bbd7eaa2827ed4f9.png/v1/fill/w_40,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Facebook.png"
+        loading="lazy"
       />
     </a>
     <a
@@ -20,10 +25,11 @@
       rel="noopener"
     >
       <img
+        src=`${IMAGE_CDN_URL}Instagram.webp?v=1744375893`
         alt="instagram logo"
         width="20px"
         height="20px"
-        src="https://static.wixstatic.com/media/01c3aff52f2a4dffa526d7a9843d46ea.png/v1/fill/w_40,h_40,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Instagram.png"
+        loading="lazy"
       />
     </a>
   </div>

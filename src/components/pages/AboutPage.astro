@@ -1,10 +1,14 @@
+---
+const { IMAGE_CDN_URL } = import.meta.env;
+---
+
 <section
   class="bg-birch items-center justify-center flex flex-col gap-10 px-4 py-6 text-black"
 >
   <img
     class="rounded-full drop-shadow-2xl size-48 md:size-96"
-    alt="sonnet"
-    src="https://static.wixstatic.com/media/15312d_99b3fb18dcc644dbb5f5c15d9bc4d1aa~mv2.jpg/v1/fill/w_800,h_800,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/Sonnet%20Lamb%2C%20actor%2C%20singer%2C%20dancer%2C%20musical%20theatre%2C%20oklahoma.jpg"
+    alt="Sonnet Lamb Smiling"
+    src=`${IMAGE_CDN_URL}about.webp?v=1743797640`
   />
   <div class="flex flex-col gap-5 max-w-[720px] text-center">
     <h4 class="text-3xl">The World’s a Stage</h4>
@@ -40,7 +44,7 @@
   <a
     class="transition-all duration-500 rounded-[50px] hover:text-white hover:bg-black border border-black px-5 py-2.5"
     title="Resume Link"
-    href="https://www.sonnetlamb.com/_files/ugd/15312d_45f679f5768545e4b778d61dcaa6595f.docx?dn=Resume2022.docx"
+    href=`${IMAGE_CDN_URL}Sonnet_Resume_2024.pdf?v=1743797712`
     target="_blank"
     rel="noopener">Click Here for Resumé</a
   >
