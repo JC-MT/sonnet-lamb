@@ -1,14 +1,27 @@
 ---
-const { imageSrc, imgAlt } = Astro.props;
+const { imageSrc, imageAlt } = Astro.props;
 ---
 
 <paralax-image>
-  <img
-    parallax-image
-    class="w-full object-cover relative z-10 md:-z-10 md:translate-y-[-100px]"
-    src={imageSrc}
-    alt={imgAlt}
-  />
+  <picture>
+    <source media="(max-width: 400px)" srcset=`${imageSrc}&width=350` />
+    <source media="(max-width: 500px)" srcset=`${imageSrc}&width=400` />
+    <source media="(max-width: 600px)" srcset=`${imageSrc}&width=500` />
+    <source media="(max-width: 700px)" srcset=`${imageSrc}&width=600` />
+    <source media="(max-width: 800px)" srcset=`${imageSrc}&width=700` />
+    <source media="(max-width: 900px)" srcset=`${imageSrc}&width=800` />
+    <source media="(max-width: 1000px)" srcset=`${imageSrc}&width=900` />
+    <source media="(min-width: 1001px)" srcset=`${imageSrc}&width=1000` />
+    <img
+      parallax-image
+      class="w-full object-cover relative z-10 md:-z-10 md:translate-y-[-100px]"
+      src=`${imageSrc}&width=1000`
+      alt={imageAlt}
+      loading="eager"
+      width="auto"
+      height="auto"
+    />
+  </picture>
 </paralax-image>
 
 <script>
