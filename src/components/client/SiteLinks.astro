@@ -9,16 +9,19 @@ const links = [
 ];
 ---
 
-<site-links>
+<site-links transition:persist>
   <ul
     data-menu
     data-active="false"
-    class="transition-all md:transition-none duration-500 opacity-0 data-[active=true]:opacity-100 -z-20 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-16 md:pt-0 absolute bg-white justify-center items-center left-0 top-0 h-screen w-screen md:h-full md:w-full md:opacity-100! md:relative! md:grid md:grid-flow-col"
+    class="group transition-all md:transition-none duration-300 opacity-0 data-[active=true]:bg-white data-[active=true]:opacity-100 -z-50 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-20 md:pt-0 absolute bg-transparent justify-center items-center left-0 top-0 h-screen w-screen md:size-full md:opacity-100! md:relative! md:grid md:grid-flow-col"
   >
     {
       links.map(({ href, label }) => {
         return (
-          <li>
+          <li
+            class="translate-y-20 delay-200 opacity-0 group-[[data-active='true']]:opacity-100 group-[[data-active='true']]:translate-y-0 transform-all md:translate-y-0 md:opacity-100 duration-300 ease-hamburger"
+            data-link
+          >
             <a class="text-xl/[50px] md:text-sm px-2.5" href={href}>
               {label}
             </a>
@@ -33,10 +36,10 @@ const links = [
     data-active="false"
   >
     <span
-      class="translate-y-[-5.5px] group-[[data-active='true']]:translate-y-0 group-[[data-active='true']]:translate-x-[3.5px] group-[[data-active='true']]:rotate-[-135deg] group-[[data-active='true']]:w-7 bg-black w-full transition-all duration-250 absolute h-[1px] top-0 left-0 bottom-0 block m-auto ease-(--ease-hamburger)"
+      class="translate-y-[-5.5px] group-[[data-active='true']]:translate-y-0 group-[[data-active='true']]:translate-x-[3.5px] group-[[data-active='true']]:rotate-[-135deg] group-[[data-active='true']]:w-7 bg-black w-full transition-all duration-250 absolute h-[1px] top-0 left-0 bottom-0 block m-auto ease-hamburger"
     ></span>
     <span
-      class="translate-y-[5.5px] group-[[data-active='true']]:translate-y-0 group-[[data-active='true']]:translate-x-[3.5px] group-[[data-active='true']]:rotate-[135deg] group-[[data-active='true']]:w-7 bg-black w-full transition-all duration-250 absolute h-[1px] top-0 left-0 bottom-0 block m-auto ease-(--ease-hamburger)"
+      class="translate-y-[5.5px] group-[[data-active='true']]:translate-y-0 group-[[data-active='true']]:translate-x-[3.5px] group-[[data-active='true']]:rotate-[135deg] group-[[data-active='true']]:w-7 bg-black w-full transition-all duration-250 absolute h-[1px] top-0 left-0 bottom-0 block m-auto ease-hamburger"
     ></span>
   </figure>
 </site-links>
@@ -55,6 +58,7 @@ const links = [
     connectedCallback() {
       this.menuTrigger = this.querySelector("#menu-trigger");
       this.menu = this.querySelector("[data-menu]");
+      document.addEventListener("astro:after-swap", this.handleViewTransition);
 
       if (this.menuTrigger) {
         this.menuTrigger.addEventListener("click", this.toggleMenu);
@@ -67,13 +71,21 @@ const links = [
       this.activeMenu = !this.activeMenu;
       this.menu.dataset.active = this.activeMenu ? "true" : "false";
       this.menuTrigger.dataset.active = this.activeMenu ? "true" : "false";
-      document.body.classList.toggle("overflow-y-hidden", this.activeMenu);
+      document.body.classList.toggle("overflow-hidden", this.activeMenu);
+    };
+
+    handleViewTransition = () => {
+      if (this.activeMenu) this.toggleMenu();
     };
 
     disconnectedCallback() {
       if (this.menuTrigger) {
         this.menuTrigger.removeEventListener("click", this.toggleMenu);
       }
+      document.removeEventListener(
+        "astro:after-swap",
+        this.handleViewTransition,
+      );
     }
   }
 
