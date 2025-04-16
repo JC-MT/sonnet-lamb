@@ -3,6 +3,7 @@ const { title, description } = Astro.props;
 import Header from "../components/shared/Nav.astro";
 import Footer from "../components/shared/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import "@fontsource-variable/montserrat";
 ---
 
 <!doctype html>
@@ -10,20 +11,13 @@ import { ClientRouter } from "astro:transitions";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="preload"
-      href="./src/fonts/Brandon_thin.otf"
-      as="font"
-      type="font/otf"
-      crossorigin="anonymous"
-    />
-    <meta name="description" content=`${description}` />
+    <meta name="description" content={description} />
     <title>Sonnet Lamb - {title}</title>
     <ClientRouter />
   </head>
-  <body class="size-full">
+  <body class="size-full font-extralight text-[#333333]">
     <Header />
-    <main>
+    <main class="bg-birch">
       <slot />
     </main>
     <Footer />
