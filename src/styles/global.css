@@ -13,4 +13,5 @@
 @theme {
   --color-birch: #efefef;
   --font-sans: "Brandon Thin";
+  --ease-hamburger: 0.2, 0.6, 0.3, 1;
 }
