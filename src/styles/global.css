@@ -1,17 +1,7 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: "Brandon Thin";
-  src:
-    local("Brandon Thin"),
-    url("../fonts/Brandon_thin.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --color-birch: #efefef;
-  --font-sans: "Brandon Thin";
+  --font-sans: "Montserrat Variable", sans-serif;
   --ease-hamburger: 0.2, 0.6, 0.3, 1;
 }
