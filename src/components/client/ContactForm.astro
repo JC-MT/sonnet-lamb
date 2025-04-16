@@ -1,9 +1,7 @@
 <contact-form
-  class="w-full max-w-lg mx-auto flex flex-col justify-center items-center gap-3 px-3 py-5"
+  class="w-full max-w-lg mx-auto grid place-items-center md:place-content-center gap-3 p-5"
 >
-  <h2 class="text-black font-light tracking-wider text-3xl md:text-4xl">
-    CONTACT ME
-  </h2>
+  <h2 class="text-black tracking-wider text-3xl md:text-4xl">CONTACT ME</h2>
   <a
     class="font-extralight tracking-wide"
     href="mailto:sayhello@sonnetlamb.com"
@@ -11,17 +9,17 @@
   >
     sayhello@sonnetlamb.com
   </a>
-  <form>
+  <form class="grid w-full gap-2">
     <div class="flex flex-col md:flex-row w-full gap-2">
       <input
-        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border border-b-black border-transparent hover:border-black not-placeholder-shown:border-black"
         placeholder="Name"
         type="text"
         data-email="name"
         required
       />
       <input
-        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+        class="w-full md:w-1/2 text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border border-b-black border-transparent hover:border-black not-placeholder-shown:border-black"
         placeholder="Email"
         type="email"
         data-email="email"
@@ -29,14 +27,14 @@
       />
     </div>
     <input
-      class="w-full text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+      class="w-full text-base placeholder:text-black outline-hidden h-11 pl-3 pr-1 py-1 bg-birch border border-b-black border-transparent hover:border-black not-placeholder-shown:border-black"
       placeholder="Subject"
       type="text"
       data-email="subject"
       required
     />
     <textarea
-      class="w-full text-base placeholder:text-black outline-hidden resize-none h-32 pl-3 pr-1 py-1 bg-birch border-b border-black hover:border"
+      class="w-full text-base placeholder:text-black outline-hidden resize-none h-32 pl-3 pr-1 py-1 bg-birch border border-b-black border-transparent hover:border-black not-placeholder-shown:border-black"
       placeholder="Type your message here..."
       data-email="message"
       required></textarea>
@@ -53,7 +51,7 @@
   const {
     PUBLIC_EMAIL_JS_SERVICE_ID,
     PUBLIC_EMAIL_JS_TEMPLATE_ID,
-    PUBLIC_EMAIL_JS_PUBLIC_KEY
+    PUBLIC_EMAIL_JS_PUBLIC_KEY,
   } = import.meta.env;
   import emailjs from "@emailjs/browser";
   emailjs.init({ publicKey: PUBLIC_EMAIL_JS_PUBLIC_KEY });
@@ -93,16 +91,16 @@
       if (!this.form) return;
 
       const user = this.form.querySelector(
-        '[data-email="name"]'
+        '[data-email="name"]',
       ) as HTMLInputElement;
       const email = this.form.querySelector(
-        '[data-email="email"]'
+        '[data-email="email"]',
       ) as HTMLInputElement;
       const subject = this.form.querySelector(
-        '[data-email="subject"]'
+        '[data-email="subject"]',
       ) as HTMLInputElement;
       const message = this.form.querySelector(
-        '[data-email="message"]'
+        '[data-email="message"]',
       ) as HTMLTextAreaElement;
 
       if (user && email && subject && message) {
@@ -112,14 +110,14 @@
           user_name: user?.value,
           user_email: email?.value,
           message: `Subject: ${subject?.value} - Message: ${message?.value}`,
-          reply_to: email?.value
+          reply_to: email?.value,
         };
 
         try {
           const result = await emailjs.send(
             this.#serviceId,
             this.#templateId,
-            templateParams
+            templateParams,
           );
           console.log("EmailJS success", result.status, result.text);
           alert("Message successfully sent!");
