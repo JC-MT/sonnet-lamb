@@ -6,6 +6,7 @@ export default defineConfig({
   site: "https://www.sonnetlamb.com",
   base: "/",
   adapter: netlify(),
+  prefetch: true,
   vite: {
     plugins: [tailwindcss()],
   },
