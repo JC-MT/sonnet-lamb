@@ -1,12 +1,61 @@
 ---
-import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import AboutPage from "../components/pages/AboutPage.astro";
+const { IMAGE_CDN_URL } = import.meta.env;
 ---
 
 <BaseLayout
   title="About"
   description="Sonnet Lamb's about page. Here you can find information about Sonnet Lamb, their work, and their journey."
 >
-  <AboutPage />
+  <section
+    class="bg-birch items-center justify-center flex flex-col gap-10 px-5 py-6 text-black"
+  >
+    <img
+      class="rounded-full drop-shadow-2xl size-48 md:size-96"
+      alt="Sonnet Lamb Smiling"
+      src={`${IMAGE_CDN_URL}about.webp?v=1743797640`}
+    />
+    <div
+      class="flex flex-col gap-5 max-w-[720px] text-left text-base md:text-lg"
+    >
+      <h4 class="text-3xl md:text-4xl text-center">The World’s a Stage</h4>
+      <p>
+        Classically trained, Sonnet has performed roles from Rosabella in
+        Loesser's <span class="italic">The Most Happy Fella</span> to Cosette in
+        <span class="italic">Les Miserables</span>. She is known for her pure
+        soprano voice and sincere acting.
+      </p>
+      <p>
+        A recent graduate from the University of Central Oklahoma, she earned
+        her Bachelor's of Music in Musical Theatre. She has studied and been
+        directed under Tony Walton, Dr. Greg White, Jonathan Beck Reed, and Amy
+        Reynolds.
+      </p>
+      <p>
+        Additional credits include
+        <span class="italic">TEXAS: The Outdoor Musical</span>
+        (Elsie),
+        <span class="italic">The Pirates of Penzance</span> (Mabel),
+        <span class="italic">Man of La Mancha</span> (Antonia),
+        <span class="italic">Annie!</span> (Lily St. Regis),
+        <span class="italic">Oliver!</span> (Charlotte), and
+        <span class="italic">Into the Woods</span> (Rapunzel). Sonnet also has five
+        years experience in teaching voice, piano, and acting.
+      </p>
+      <p>
+        Sonnet made the big move to New York City in 2020 with her very cute
+        husband, Jan. She is often found at the piano, in the dance studio, or
+        obsessively cleaning her already clean apartment. Sonnet is loving
+        living the dream, and looks forward to starring anything opposite Ryan
+        Reynolds.
+      </p>
+    </div>
+    <a
+      class="transition-all duration-500 rounded-[50px] hover:text-white hover:bg-black border border-black px-5 py-2.5"
+      title="Resume Link"
+      href={`${IMAGE_CDN_URL}Sonnet_Resume_2024.pdf?v=1743797712`}
+      target="_blank"
+      rel="noopener">Click Here for Resumé</a
+    >
+  </section>
 </BaseLayout>

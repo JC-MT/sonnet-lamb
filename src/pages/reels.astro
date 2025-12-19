@@ -1,12 +1,55 @@
 ---
-import "../styles/global.css";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ReelsPage from "../components/pages/ReelsPage.astro";
 ---
 
 <BaseLayout
   title="Reels"
   description="Sonnet Lamb's reels page. Here you can find a collection of Sonnet Lamb's video reels, showcasing their performances and artistic range."
 >
-  <ReelsPage />
+  <section
+    class="flex flex-col w-full gap-5 md:gap-8 items-center p-5 max-w-7xl mx-auto"
+  >
+    <div class="grid gap-2 w-full">
+      <h2 class="text-lg md:text-3xl">REEL</h2>
+      <div class="w-full h-72 md:h-[600px]">
+        <iframe
+          class="h-full w-full"
+          src="https://www.youtube-nocookie.com/embed/VNx2dWbYsnM"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Sonnet Lamb Self Tape Reel"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+    </div>
+    <div class="grid gap-2 w-full">
+      <h2 class="text-lg md:text-3xl">SELF TAPE</h2>
+      <div class="w-full h-72 md:h-[600px]">
+        <iframe
+          class="h-full w-full"
+          src="https://www.youtube-nocookie.com/embed/yzVzNduzhnw"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Sonnet Lamb Self Tape Reel"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+    </div>
+    <div class="grid gap-2 w-full">
+      <h2 class="text-lg md:text-3xl">ON SCREEN</h2>
+      <div class="w-full h-72 md:h-[600px]">
+        <iframe
+          class="h-full w-full"
+          src="https://www.youtube-nocookie.com/embed/_AgJLTc_83Y"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Sonnet Lamb Self Tape Reel"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

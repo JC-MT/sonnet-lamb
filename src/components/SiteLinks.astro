@@ -23,9 +23,12 @@ const hamburgerSharedClasses =
           <li
             style={`transition-delay: ${idx * 50}ms;`}
             class="translate-y-20 opacity-0 group-[[data-active='true']]:opacity-100 group-[[data-active='true']]:translate-y-0 transform-all md:translate-y-0 md:opacity-100 duration-300 ease-hamburger"
-            data-link
           >
-            <a class="text-xl/[50px] md:text-sm px-2.5" href={href}>
+            <a
+              class="text-xl/[50px] md:text-sm px-2.5"
+              href={href}
+              data-astro-prefetch="tap"
+            >
               {label}
             </a>
           </li>
