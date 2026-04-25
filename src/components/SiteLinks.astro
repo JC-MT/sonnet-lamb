@@ -1,15 +1,42 @@
 ---
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/reels", label: "Reels" },
-  { href: "/news", label: "News" },
-  { href: "/contact", label: "Contact" },
-];
+const { pathname } = Astro.url;
+const isActingSite = pathname.startsWith("/acting");
+
+type Link = {
+  href: string;
+  label: string;
+  attr?: Record<string, string>;
+};
+
+let links: Link[] = [];
+
+if (isActingSite) {
+  links = [
+    { href: `/acting/reels`, label: "Reels", attr: {} },
+    { href: `/acting/gallery`, label: "Gallery", attr: {} },
+    { href: `/acting/about`, label: "About", attr: {} },
+    { href: `/acting/news`, label: "News", attr: {} },
+    { href: `/acting/contact`, label: "Contact", attr: {} },
+    { href: `/`, label: `Doula`, attr: { "data-astro-reload": "", 'target': "_blank", 'rel': "noopener noreferrer" } },
+  ];
+} else {
+  links = [
+    { href: "/aboutme", label: "About Me", attr: {} },
+    { href: "/services", label: "Services", attr: {} },
+    { href: "/contact", label: "Contact", attr: {} },
+    { href: `/acting`, label: `Acting`, attr: { "data-astro-reload": "", 'target': "_blank", 'rel': "noopener noreferrer" } },
+  ];
+}
 const hamburgerSharedClasses =
   "group-[[data-active='true']]:translate-y-0 group-[[data-active='true']]:translate-x-[3.5px] group-[[data-active='true']]:w-7 bg-black w-full transition-all duration-250 absolute h-[1px] top-0 left-0 bottom-0 block m-auto ease-hamburger";
 ---
+
+<style>
+  [target="_blank"]:after {
+    font-size: 8px;
+    content: "↗";
+  }
+</style>
 
 <site-links>
   <ul
@@ -18,16 +45,18 @@ const hamburgerSharedClasses =
     class="group transition-all md:transition-none duration-300 opacity-0 bg-white data-[active=true]:opacity-100 -z-50 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-32 md:pt-0 absolute justify-center items-center left-0 top-0 h-screen w-screen md:size-full md:opacity-100! md:relative! md:grid md:grid-flow-col"
   >
     {
-      links.map(({ href, label }, idx) => {
+      links.map(({ href, label, attr }, idx) => {
         return (
           <li
             style={`transition-delay: ${idx * 50}ms;`}
             class="translate-y-20 opacity-0 group-[[data-active='true']]:opacity-100 group-[[data-active='true']]:translate-y-0 transform-all md:translate-y-0 md:opacity-100 duration-300 ease-hamburger"
           >
             <a
-              class="text-xl/[50px] md:text-sm px-2.5"
+              aria-current={pathname === href ? "page" : undefined}
+              class="text-xl/[50px] md:text-sm px-2.5 aria-[current='page']:underline aria-[current='page']:decoration-1 aria-[current='page']:underline-offset-[6px] aria-[current='page']:decoration-black"
               href={href}
               data-astro-prefetch="tap"
+              {...attr}
             >
               {label}
             </a>
@@ -55,23 +84,39 @@ const hamburgerSharedClasses =
     private activeMenu: boolean;
     private menu: HTMLElement | null;
     private menuTrigger: HTMLElement | null;
+    links: NodeListOf<HTMLElement> | null;
 
     constructor() {
       super();
       this.activeMenu = false;
       this.menu = null;
       this.menuTrigger = null;
+      this.links = null;
     }
 
     connectedCallback() {
       this.menuTrigger = this.querySelector("#menu-trigger");
       this.menu = this.querySelector("[data-menu]");
-      document.addEventListener("astro:page-load", this.handleViewTransition);
-
+      this.links = this.querySelectorAll("a");
+      
       if (this.menuTrigger) {
         this.menuTrigger.addEventListener("click", this.toggleMenu);
       }
+      document.addEventListener("astro:page-load", this.handleViewTransition);
     }
+
+    updateLinkStates = () => {
+      const { pathname } = window.location;
+      if (!this.links) return;
+      this.links.forEach(link => {
+        const href = link.getAttribute("href");
+        if (href === pathname) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
 
     toggleMenu = () => {
       if (!this.menu || !this.menuTrigger) return;
@@ -85,6 +130,7 @@ const hamburgerSharedClasses =
 
     handleViewTransition = () => {
       if (this.activeMenu) this.toggleMenu();
+      this.updateLinkStates();
     };
 
     disconnectedCallback() {
