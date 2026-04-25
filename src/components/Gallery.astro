@@ -62,6 +62,9 @@ const { images, scrollAmount } = Astro.props;
 
     constructor() {
       super();
+      this.prevButton = null;
+      this.nextButton = null;
+      this.slider = null;
     }
 
     connectedCallback() {
@@ -79,11 +82,11 @@ const { images, scrollAmount } = Astro.props;
       const button = e.currentTarget as HTMLButtonElement;
       if (button) {
         const { direction } = button.dataset;
-        if (direction) this.scrollSlider(direction);
+        if (direction === "next" || direction === "prev") this.scrollSlider(direction);
       }
     };
 
-    scrollSlider(direction: string) {
+    scrollSlider(direction: "next" | "prev") {
       if (this.slider && direction) {
         const operation = {
           next: this.slider.scrollLeft + Number(this.slider.dataset.scroll),

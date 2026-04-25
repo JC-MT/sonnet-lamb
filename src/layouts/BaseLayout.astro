@@ -3,8 +3,9 @@ const { title, description } = Astro.props;
 import Header from "../layouts/Nav.astro";
 import Footer from "../layouts/Footer.astro";
 import { ClientRouter } from "astro:transitions";
-import "@fontsource-variable/montserrat";
 import "../styles/global.css";
+// @ts-expect-error - side-effect CSS import, no type declarations
+import "@fontsource-variable/montserrat";
 ---
 
 <!doctype html>

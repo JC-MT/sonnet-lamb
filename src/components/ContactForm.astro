@@ -66,11 +66,11 @@
       super();
       this.submitButton = null;
       this.form = null;
+      this.#serviceId = PUBLIC_EMAIL_JS_SERVICE_ID || "";
+      this.#templateId = PUBLIC_EMAIL_JS_TEMPLATE_ID || "";
     }
 
     connectedCallback() {
-      this.#serviceId = PUBLIC_EMAIL_JS_SERVICE_ID || "";
-      this.#templateId = PUBLIC_EMAIL_JS_TEMPLATE_ID || "";
       this.submitButton = this.querySelector("button[type='submit']");
       this.form = this.querySelector("form");
 
