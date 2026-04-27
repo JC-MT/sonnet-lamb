@@ -4,12 +4,16 @@ const isActingSite = pathname.startsWith("/acting");
 import SiteLinks from "../components/SiteLinks.astro";
 ---
 
-<header
-  class="w-full max-w-7xl mx-auto flex justify-between items-center p-5 md:py-7 relative md:z-20 bg-white"
-  transition:persist
->
-  <a class="z-30 relative text-xl md:text-2xl tracking-tight uppercase" href={`/${isActingSite ? "acting" : ""}`}>Sonnet Lamb</a>
-  <nav>
-    <SiteLinks />
-  </nav>
+<header class:list={ [isActingSite ? 'z-50' : '', 'w-full top-0 bg-nav relative' ] }>
+  <div
+    class="bg-nav w-full max-w-7xl mx-auto flex justify-between items-center p-5 md:py-7 relative"
+  >
+    <a
+      class="z-30 relative text-xl md:text-2xl tracking-tight uppercase font-extralight"
+      href={`/${isActingSite ? "acting" : ""}`}>Sonnet Lamb</a
+    >
+    <nav>
+      <SiteLinks />
+    </nav>
+  </div>
 </header>

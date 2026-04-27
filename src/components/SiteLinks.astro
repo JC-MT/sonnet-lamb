@@ -17,18 +17,34 @@ if (isActingSite) {
     { href: `/acting/about`, label: "About", attr: {} },
     { href: `/acting/news`, label: "News", attr: {} },
     { href: `/acting/contact`, label: "Contact", attr: {} },
-    { href: `/`, label: `Doula`, attr: { "data-astro-reload": "", 'target': "_blank", 'rel': "noopener noreferrer" } },
+    {
+      href: `/`,
+      label: `Doula`,
+      attr: {
+        "data-astro-reload": "",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
+    },
   ];
 } else {
   links = [
     { href: "/aboutme", label: "About Me", attr: {} },
     { href: "/services", label: "Services", attr: {} },
     { href: "/contact", label: "Contact", attr: {} },
-    { href: `/acting`, label: `Acting`, attr: { "data-astro-reload": "", 'target': "_blank", 'rel': "noopener noreferrer" } },
+    {
+      href: `/acting`,
+      label: `Acting`,
+      attr: {
+        "data-astro-reload": "",
+        target: "_blank",
+        rel: "noopener noreferrer",
+      },
+    },
   ];
 }
 const hamburgerSharedClasses =
-  "group-[[data-active='true']]:translate-y-0 group-[[data-active='true']]:translate-x-[3.5px] group-[[data-active='true']]:w-7 bg-black w-full transition-all duration-250 absolute h-[1px] top-0 left-0 bottom-0 block m-auto ease-hamburger";
+  "group-[[data-active='true']]:translate-y-0 group-[[data-active='true']]:translate-x-[3.5px] group-[[data-active='true']]:w-7 bg-fg w-full transition-all duration-250 absolute h-[1px] top-0 left-0 bottom-0 block m-auto ease-hamburger";
 ---
 
 <style>
@@ -42,7 +58,7 @@ const hamburgerSharedClasses =
   <ul
     data-menu
     data-active="false"
-    class="group transition-all md:transition-none duration-300 opacity-0 bg-white data-[active=true]:opacity-100 -z-50 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-32 md:pt-0 absolute justify-center items-center left-0 top-0 h-screen w-screen md:size-full md:opacity-100! md:relative! md:grid md:grid-flow-col"
+    class="group transition-all md:transition-none duration-300 opacity-0 bg-nav data-[active=true]:opacity-100 -z-50 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-32 md:pt-0 absolute justify-center items-center left-0 top-0 h-screen w-screen md:size-full md:opacity-100! md:relative! md:grid md:grid-flow-col"
   >
     {
       links.map(({ href, label, attr }, idx) => {
@@ -53,7 +69,7 @@ const hamburgerSharedClasses =
           >
             <a
               aria-current={pathname === href ? "page" : undefined}
-              class="text-xl/[50px] md:text-sm px-2.5 aria-[current='page']:underline aria-[current='page']:decoration-1 aria-[current='page']:underline-offset-[6px] aria-[current='page']:decoration-black"
+              class="text-xl/[50px] md:text-sm px-2.5 aria-[current='page']:underline aria-[current='page']:decoration-1 aria-[current='page']:underline-offset-[6px] aria-[current='page']:decoration-fg"
               href={href}
               data-astro-prefetch="tap"
               {...attr}
@@ -64,6 +80,19 @@ const hamburgerSharedClasses =
         );
       })
     }
+    { !isActingSite ? (
+      <li
+        style={`transition-delay: ${links.length * 50}ms;`}
+        class="md:hidden translate-y-[100vh] bottom-0 relative flex justify-center opacity-0 px-5 group-[[data-active='true']]:opacity-100 group-[[data-active='true']]:translate-y-[35vh] transform-all md:translate-y-0 md:opacity-100 duration-300 ease-hamburger"
+      >
+        <a
+          class="h-12 w-fit transition-all duration-300 rounded-[50px] hover:bg-accent border hover:text-white border-accent px-5 py-2.5 text-center"
+          href='/contact'
+        >
+          Schedule an Interview
+        </a>
+      </li>
+    ) : null }
   </ul>
   <figure
     id="menu-trigger"
@@ -98,7 +127,7 @@ const hamburgerSharedClasses =
       this.menuTrigger = this.querySelector("#menu-trigger");
       this.menu = this.querySelector("[data-menu]");
       this.links = this.querySelectorAll("a");
-      
+
       if (this.menuTrigger) {
         this.menuTrigger.addEventListener("click", this.toggleMenu);
       }
@@ -108,7 +137,7 @@ const hamburgerSharedClasses =
     updateLinkStates = () => {
       const { pathname } = window.location;
       if (!this.links) return;
-      this.links.forEach(link => {
+      this.links.forEach((link) => {
         const href = link.getAttribute("href");
         if (href === pathname) {
           link.setAttribute("aria-current", "page");
