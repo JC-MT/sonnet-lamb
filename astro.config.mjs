@@ -5,6 +5,10 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://www.sonnetlamb.com",
   base: "/",
+  trailingSlash: "never",
+  build: {
+    format: "file",
+  },
   adapter: netlify({
     imageCDN: false,
   }),
