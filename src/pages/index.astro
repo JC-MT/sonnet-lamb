@@ -1,95 +1,35 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ParalaxImage from "../components/ParalaxImage.astro";
-const { IMAGE_CDN_URL } = import.meta.env;
+import { Image } from 'astro:assets';
+import test from "./../assets/doula/IMG_2760_jpg.jpg";
 ---
 
 <BaseLayout
-  title="Singer, Actor, Dancer"
-  description="Sonnet Lamb's homepage. Here you can find information about Sonnet Lamb, their work, and their journey."
+  description="Sonnet Lamb's website - Find more information about Sonnet Lamb, her work, and her journey."
 >
-  <section class="bg-birch relative z-10">
-    <div
-      class="grid md:grid-cols-2 md:min-h-[750px] md:min-w-5xl mx-auto max-w-7xl md:px-5 md:border-y-[60px] md:border-birch"
-    >
-      <div
-        class="flex flex-col items-center justify-center gap-5 w-full p-5 py-7 md:p-10 bg-white text-center row-start-2 md:row-start-1"
-      >
-        <h1 class="text-7xl text-[#96C0E7] font-thin tracking-tighter">
-          SONNET <br />LAMB
-        </h1>
-        <h2 class="text-3xl">Singer, Actor, Dancer</h2>
-        <p class="text-base text-left max-w-lg mx-auto">
-          Thanks for visiting my site. I am a passionate Actor with years of
-          experience in the industry. I love what I do, and want others to see
-          that love shine through in all of my work. Take a look around to find
-          information about myself, my career, updates on projects I’m working
-          on, and any upcoming events.
-        </p>
-        <a
-          class="mx-auto w-fit transition-all duration-300 bg-white hover:bg-[#96C0E7] hover:text-white border-[#96C0E7] border text-lg rounded-3xl px-4 py-2"
-          href="/about"
-          >Learn More<span class="sr-only">by visiting About Page</span></a
-        >
-      </div>
-      <ParalaxImage
-        imageAlt="Sonnet Lamb Headshot"
-        imageSrc=`${IMAGE_CDN_URL}15312d_8947a28f34a947c88e0eccf3d84f0f8e_mv2_d_3000_4500_s_4_2_00747f8b-0e54-4309-abba-e7c1c7f2ac9a.webp?v=1743806205`
-      />
-    </div>
-    <div class="grid md:grid-cols-2 h-full z-10 relative">
-      <img
-        class="object-cover min-h-72 md:max-h-80 w-full"
-        src=`${IMAGE_CDN_URL}Untitled_design.jpg?v=1744463184&width=800`
-        srcset=`
-        ${IMAGE_CDN_URL}Untitled_design.jpg?v=1744463184&width=350 350w,
-        ${IMAGE_CDN_URL}Untitled_design.jpg?v=1744463184&width=450 450w,
-        ${IMAGE_CDN_URL}Untitled_design.jpg?v=1744463184&width=550 550w,
-        ${IMAGE_CDN_URL}Untitled_design.jpg?v=1744463184&width=650 650w,
-        ${IMAGE_CDN_URL}Untitled_design.jpg?v=1744463184&width=750 750w,
-        ${IMAGE_CDN_URL}Untitled_design.jpg?v=1744463184&width=800 800w
-      `
-        sizes="(min-width: 768px) 50vw, 100vw"
-        alt="sonnet lamb"
-        loading="lazy"
-        width="auto"
-        height="auto"
-      />
-      <div
-        class="text-white bg-[#96C0E7] flex flex-col gap-3 items-center justify-center py-20 px-4 md:py-0 relative z-50"
-      >
-        <h2 class="text-4xl">CONTACT ME</h2>
-        <a
-          class="text-base"
-          href="mailto:sayhello@sonnetlamb.com"
-          rel="noopener">sayhello@sonnetlamb.com</a
-        >
-        <div class="flex gap-3">
-          <a
-            href="https://www.facebook.com/sonnet.lamb"
-            target="_blank"
-            rel="noopener"
-            ><img
-              alt="facebook logo"
-              width="26px"
-              height="26px"
-              src=`${IMAGE_CDN_URL}Facebook_1.png?v=1744410188`
-              loading="lazy"
-            /></a
-          ><a
-            href="https://www.instagram.com/sonnetlamb/?hl=en"
-            target="_blank"
-            rel="noopener"
-            ><img
-              alt="instagram logo"
-              width="26px"
-              height="26px"
-              src=`${IMAGE_CDN_URL}Instagram.png?v=1744410243`
-              loading="lazy"
-            /></a
-          >
+  <section class="max-w-5xl mx-auto md:pb-5 bg-bg items-center justify-center flex flex-col md:flex-row gap-8 md:gap-10 lg:gap-16 text-fg">
+    <div class="w-full md:w-2/3 relative">
+      <Image src={test} alt="Sonnet Lamb" class="md:rounded-lg w-full brightness-75 object-cover md:h-[600px]" layout="constrained"/>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="grid gap-2 px-1 md:px-10 lg:px-20">
+          <h1 class="text-4xl font-medium text-center text-footer uppercase">Birth Doula</h1>
+          <p class="flex items-center text-base font-normal text-center text-footer uppercase">Pregnancy <span class="mx-3">|</span> Birth <span class="mx-3">|</span> Postpartum</p>
         </div>
       </div>
+    </div>
+    <div class="w-full md:w-1/2 px-5 md:px-0 grid gap-4 md:gap-6">
+      <div class="grid gap-1">
+        <p class="text-sm font-medium uppercase">NYC Based</p>
+        <p class="text-3xl md:text-4xl font-extralight">Passionate Care For Every Birth Story</p>
+      </div>
+      <hr class="border-t border-accent"/>
+      <p class="text-base md:text-lg">Supporting women through their birth journeys and empowering them through pregnancy and postpartum fitness.</p>
+      <a
+        class="mb-10 md:mb-0 transition-all duration-300 rounded-[50px] hover:bg-accent border hover:text-white border-accent px-5 py-2.5 w-full md:w-fit text-center"
+        href='/contact'
+      >
+        Schedule an Interview
+      </a>
     </div>
   </section>
 </BaseLayout>

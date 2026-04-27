@@ -1,7 +1,34 @@
 @import "tailwindcss";
 
-@theme {
-  --color-birch: #efefef;
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-fg: var(--fg);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-nav: var(--nav);
+  --color-footer: var(--footer);
   --font-sans: "Montserrat Variable", sans-serif;
   --ease-hamburger: 0.2, 0.6, 0.3, 1;
+}
+
+:root,
+[data-theme="earthy"] {
+  --bg: #feedbb;
+  --surface: #fff8e0;
+  --fg: #000000;
+  --accent: #C88F40;
+  --muted: #8a7350;
+  --nav: #feedbb;
+  --footer: #f9db7b;
+}
+
+[data-theme="acting"] {
+  --bg: #efefef;
+  --surface: #ffffff;
+  --fg: #333333;
+  --accent: #96c0e7;
+  --muted: #666666;
+  --nav: #ffffff;
+  --footer: #efefef;
 }

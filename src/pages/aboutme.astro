@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets';
+import test from "./../assets/doula/IMG_5563.jpg";
+import harvest from "./../assets/doula/000493880025.jpg";
+import sonnetHarvest from "./../assets/doula/IMG_4199.jpg";
+import sonnet from "./../assets/doula/IMG_2855.jpg";
+import family from "./../assets/doula/IMG_5687.jpg";
+---
+
+<BaseLayout
+  title="About Me"
+  description="Sonnet Lamb's about me page. Here you can find information about Sonnet Lamb, her work, and her journey."
+>
+  <section
+    class="bg-bg justify-center flex flex-col md:flex-row gap-5 md:gap-10 lg:gap-16 px-5 pb-5 text-fg max-w-7xl mx-auto"
+  >
+  <div>
+    <Image
+      class="h-full w-full md:h-[550px] object-cover rounded-lg md:mb-5"
+      alt="Sonnet Lamb Smiling"
+      layout="constrained"
+      src={test}
+    />
+    <div class="hidden gap-5 md:grid grid-cols-2">
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={harvest}
+        alt="Sonnet Lamb Posing"
+      />
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={sonnet}
+        alt="Sonnet Lamb Posing"
+      />
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={sonnetHarvest}
+        alt="Sonnet Lamb Posing"
+      />
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={family}
+        alt="Sonnet Lamb Posing"
+      />
+    </div>
+    </div>
+    <div
+      class="flex flex-col gap-3 md:gap-5 max-w-2xl text-left text-base md:text-lg"
+    >
+      <h1 class="text-3xl md:text-5xl text-center font-extralight">Hi, I'm Sonnet!</h1>
+      <p>
+        I’m so glad you’re here. The word doula means “servant,” and that definition is at the heart of how I view this work. I believe my role is to come alongside you to support, encourage, and serve you as you bring new life into the world and step into motherhood.
+      </p>
+      <p>
+        My faith is the heartbeat of my work. I believe that through birth, God graciously allows us to know Him and His character in a deeper way, revealing His heart for us as His children. Scripture describes the Holy Spirit as our helper, and that’s the posture I strive to take as a doula.
+      </p>
+      <blockquote class="italic text-center">
+        “Likewise the Spirit helps us in our weakness…” — Romans 8:26
+      </blockquote>
+      <p>
+        In that same spirit, I aim to be a gentle, steady presence, meeting you where you are, offering comfort, interceding in prayer, and walking alongside you through every step of this journey.
+      </p>
+      <p>
+        I believe every mother deserves to feel supported, informed, and cared for no matter what her birth looks like. Whether you’re planning a home birth, a hospital birth, choosing to use pain medication or not, or preparing for a cesarean, my role remains the same: to support you in your choices and help you feel confident and at peace in them.
+      </p>
+      <p>
+        My journey into this work didn’t start in a classroom. It began with my own experience of becoming a mother. The birth of my daughter was deeply transformative and opened my heart to the kind of support every woman deserves during pregnancy, birth, and postpartum. It was through that experience that I felt called to become a doula, and I’ve been on this path ever since.
+      </p>
+      <p>
+        I’m currently completing my training (estimated completion: summer 2026) through MaternityWise Institute to become certified as a Labor Doula, Postpartum Doula, and in Lactation support. Even before stepping into this work professionally, I’ve had the privilege of supporting and counseling moms as they navigate their birth plans and decisions, which has only deepened my desire to serve families in this way. I’m also a certified barre instructor, specializing in pregnancy and postpartum fitness, which further shapes how I support women’s bodies through this season.
+      </p>
+      <p>
+        I’m based in Brooklyn and serve all five NYC boroughs. I’ve been married to my husband Jan for five years, and we have a sweet 20-month-old daughter. It’s truly an honor to walk alongside women and families in this sacred season.
+      </p>
+    </div>
+    <div class="md:hidden gap-2 grid grid-cols-2">
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={harvest}
+        alt="Sonnet Lamb Posing"
+      />
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={sonnet}
+        alt="Sonnet Lamb Posing"
+      />
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={sonnetHarvest}
+        alt="Sonnet Lamb Posing"
+      />
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={family}
+        alt="Sonnet Lamb Posing"
+      />
+    </div>
+  </section>
+</BaseLayout>
