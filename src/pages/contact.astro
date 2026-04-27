@@ -1,19 +1,49 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ContactForm from "../components/ContactForm.astro";
-const { IMAGE_CDN_URL } = import.meta.env;
+import DoulaForm from "../components/DoulaForm.astro";
+import { Image } from 'astro:assets';
+import harvest from "./../assets/doula/000493880025.jpg";
 ---
 
 <BaseLayout
   title="Contact"
   description="Sonnet Lamb's contact page. Here you can find ways to reach out to Sonnet Lamb for inquiries, collaborations, or feedback."
 >
-  <section class="w-full md:grid md:grid-cols-2 bg-birch h-full">
-    <img
-      class="w-full h-72 sm:h-96 md:h-[725px] object-cover md:object-[50%_75%]"
-      src=`${IMAGE_CDN_URL}15312d_87e0a00d25c44421845f8a6a2a0cc6cb_mv2_d_2240_3360_s_2_1.webp?v=1744401582`
-      alt="Sonnet Lamb Posing"
-    />
-    <ContactForm />
+  <section class="w-full bg-bg h-full flex flex-col md:flex-row max-w-7xl mx-auto px-5 pb-5 gap-5 md:gap-10 lg:gap-16">
+    <div class="flex flex-col gap-4 md:gap-10 md:w-1/2">
+      <div class="w-full flex justify-center flex-col gap-2">
+        <h2 class="text-3xl md:text-5xl font-extralight">Thank you for your interest!</h2>
+        <div class="grid gap-2">
+          <p class="text-base md:text-xl">
+            Fill out the form below to inquire about your family's needs, availability and schedule your complimentary interview. 
+          </p>
+          <a
+            href="mailto:sayhello@sonnetlamb.com"
+            rel="noopener"
+          >
+            sayhello@sonnetlamb.com
+          </a>
+        </div>
+      </div>
+      <div class="gap-5 hidden md:grid">
+        <Image
+          class="h-80 object-cover rounded-lg"
+          layout="constrained"
+          src={harvest}
+          alt="Sonnet Lamb Posing"
+        />
+      </div>
+    </div>
+    <div class="w-full md:w-1/2">
+      <DoulaForm />
+    </div>
+    <div class="gap-2 md:hidden grid">
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={harvest}
+        alt="Sonnet Lamb Posing"
+      />
+    </div>
   </section>
 </BaseLayout>

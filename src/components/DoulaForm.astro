@@ -1,0 +1,223 @@
+<contact-form class="mx-auto grid gap-3 place-items-center">
+  <form class="w-full grid gap-2 md:gap-4">
+    <div class="grid gap-1">
+      <p>Name</p>
+      <div class="grid grid-cols-2 gap-2 md:gap-4 w-full">
+        <div class="grid gap-0.5">
+          <label class="text-xs" for="first_name">First Name (required)</label>
+          <input
+            id="first_name"
+            class="w-full text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+            type="text"
+            data-email="first_name"
+            required
+          />
+        </div>
+        <div class="grid gap-0.5">
+          <label class="text-xs" for="last_name">Last Name (required)</label>
+          <input
+            id="last_name"
+            class="w-full text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+            type="text"
+            data-email="last_name"
+            required
+          />
+        </div>
+      </div>
+    </div>
+    <div class="grid gap-1">
+      <label class="text-xs" for="email">Email (required)</label>
+      <input
+        id="email"
+        class="w-full text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+        type="email"
+        data-email="email"
+        required
+      />
+    </div>
+    <div class="grid gap-1">
+      <label class="text-xs" for="phone">Phone (required)</label>
+      <input
+        id="phone"
+        class="w-full text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+        type="text"
+        data-email="phone"
+        required
+      />
+    </div>
+    <div class="grid gap-1">
+      <p>Partner's Name (if applicable)</p>
+      <div class="grid grid-cols-2 gap-2 md:gap-4 w-full">
+        <div class="grid gap-0.5">
+          <label class="text-xs" for="partner_first_name">First Name</label>
+          <input
+            id="partner_first_name"
+            class="w-full text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+            type="text"
+            data-email="partner_first_name"
+          />
+        </div>
+        <div class="grid gap-0.5">
+          <label class="text-xs" for="partner_last_name">Last Name</label>
+          <input
+            id="partner_last_name"
+            class="w-full text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+            type="text"
+            data-email="partner_last_name"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="grid gap-1">
+      <label class="text-xs" for="partner_email">Partner's Email</label>
+      <input
+        id="partner_email"
+        class="w-full text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+        type="email"
+        data-email="partner_email"
+      />
+    </div>
+    <div class="grid gap-1">
+      <label class="text-xs" for="due_date">Due Date (if applicable)</label>
+      <input
+        autocomplete="false"
+        id="due_date"
+        type="date"
+        data-email="due_date"
+        class="md:w-[calc(50%-0.5rem)] text-base placeholder:text-fg outline-hidden h-11 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+      />
+    </div>
+
+    <div class="grid gap-2">
+      <label class="text-base" for="message"
+        >Is there anything you'd like to share about your personal beliefs,
+        specific needs, or ways you desire to be supported by your doula?
+        (required)</label
+      >
+      <textarea
+        class="w-full text-base placeholder:text-fg outline-hidden resize-none h-32 pl-3 pr-1 py-1 bg-surface border border-fg rounded-md"
+        data-email="message"
+        id="message"
+        required></textarea>
+    </div>
+    <button
+      class="data-[loading='true']:pointer-events-none text-xl py-2 px-5 mt-2 hover:text-white hover:bg-accent border border-accent h-12 transition-colors duration-300 w-full md:w-fit cursor-pointer rounded-full"
+      type="submit"
+      data-loading="false"
+    >
+      Send Inquiry Form
+    </button>
+  </form>
+</contact-form>
+<script>
+  const {
+    PUBLIC_EMAIL_JS_SERVICE_ID,
+    PUBLIC_EMAIL_JS_TEMPLATE_ID,
+    PUBLIC_EMAIL_JS_PUBLIC_KEY,
+  } = import.meta.env;
+  import emailjs from "@emailjs/browser";
+  emailjs.init({ publicKey: PUBLIC_EMAIL_JS_PUBLIC_KEY });
+
+  class ContactForm extends HTMLElement {
+    submitButton: HTMLButtonElement | null;
+    form: HTMLFormElement | null;
+    #serviceId: string;
+    #templateId: string;
+
+    constructor() {
+      super();
+      this.submitButton = null;
+      this.form = null;
+      this.#serviceId = PUBLIC_EMAIL_JS_SERVICE_ID || "";
+      this.#templateId = PUBLIC_EMAIL_JS_TEMPLATE_ID || "";
+    }
+
+    connectedCallback() {
+      this.submitButton = this.querySelector("button[type='submit']");
+      this.form = this.querySelector("form");
+
+      if (this.form) {
+        this.form.addEventListener("submit", this.sendEmail);
+      }
+    }
+
+    updateButtonState(state: boolean) {
+      if (this.submitButton) {
+        this.submitButton?.setAttribute("data-loading", `${state}`);
+        this.submitButton.textContent = state ? "Sending..." : "Submit";
+      }
+    }
+
+    sendEmail = async (e: SubmitEvent) => {
+      e.preventDefault();
+      if (!this.form) return;
+
+      const getValue = (key: string) =>
+        (
+          this.form!.querySelector(`[data-email="${key}"]`) as
+            | HTMLInputElement
+            | HTMLTextAreaElement
+            | null
+        )?.value.trim() ?? "";
+
+      const firstName = getValue("first_name");
+      const lastName = getValue("last_name");
+      const email = getValue("email");
+      const phone = getValue("phone");
+      const partnerFirstName = getValue("partner_first_name");
+      const partnerLastName = getValue("partner_last_name");
+      const partnerEmail = getValue("partner_email");
+      const dueDate = getValue("due_date");
+      const message = getValue("message");
+
+      if (firstName && lastName && email && phone && message) {
+        this.updateButtonState(true);
+
+        const parts = [
+          `First Name: ${firstName}`,
+          `Last Name: ${lastName}`,
+          `Email: ${email}`,
+          `Phone: ${phone}`,
+        ];
+        if (partnerFirstName)
+          parts.push(`Partner First Name: ${partnerFirstName}`);
+        if (partnerLastName)
+          parts.push(`Partner Last Name: ${partnerLastName}`);
+        if (partnerEmail) parts.push(`Partner Email: ${partnerEmail}`);
+        if (dueDate) parts.push(`Due Date: ${dueDate}`);
+        parts.push(`Message: ${message}`);
+
+        const templateParams = {
+          user_name: `${firstName} ${lastName}`,
+          user_email: email,
+          message: `New Doula Inquiry - ${parts.join(" | ")}`,
+          reply_to: email,
+        };
+
+        try {
+          const result = await emailjs.send(
+            this.#serviceId,
+            this.#templateId,
+            templateParams,
+          );
+          console.log("EmailJS success", result.status, result.text);
+          alert("Inquiry was successfully sent! We'll be in touch soon.");
+          this.form.reset();
+        } catch (error) {
+          console.error("EmailJS error", error);
+          alert("Failed to send inquiry. Try again later.");
+        } finally {
+          this.updateButtonState(false);
+        }
+      }
+    };
+
+    disconnectedCallback() {
+      if (this.form) {
+        this.form.removeEventListener("submit", this.sendEmail);
+      }
+    }
+  }
+
+  customElements.define("contact-form", ContactForm);
+</script>

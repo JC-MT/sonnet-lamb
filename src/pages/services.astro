@@ -1,13 +1,49 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const { IMAGE_CDN_URL } = import.meta.env;
+import { Image } from 'astro:assets';
+import test from "./../assets/doula/IMG_2786_jpg.jpg";
+const packegeOne = {
+  title: "Birth Package",
+  includes: [
+    "2 Prenatal Visits",
+    "1 Virtual Childbirth Education Class",
+    "Birth",
+    "1 Postpartum Visit",
+  ],
+  cost: "$2500"
+}
 ---
 
 <BaseLayout
   title="Doula Services"
   description="Sonnet Lamb's doula services page. Here you can find information about the doula services offered by Sonnet Lamb."
 >
-  <section class="flex flex-col items-center justify-center">
-    <h1>Doula Services</h1>
+  <section class="max-w-7xl mx-auto px-5 bg-bg items-center justify-center flex flex-col md:flex-row gap-5 md:gap-10 lg:gap-16 pb-5 text-fg">
+    <div class="w-full md:w-1/2">
+      <Image src={test} alt="Sonnet Lamb" class="w-full rounded-lg h-96 md:h-[448px] lg:h-[600px] object-cover" layout="constrained"/>
+    </div>
+    <div
+      class="md:w-1/2 flex text-left flex-col gap-4 max-w-[720px] text-base md:text-lg"
+    >
+      <h3 class="text-3xl md:text-4xl font-extralight">{packegeOne.title}</h3>
+      <div class="grid gap-2 md:gap-4">
+        <div class="grid gap-2">
+          <p>Includes:</p>
+          <ul class="list-disc list-inside grid gap-1">
+            {packegeOne.includes.map(item => (
+              <li class="list-none flex gap-2 items-center"><div class="flex min-w-5 size-5 items-center justify-center rounded-full bg-accent text-sm text-white">✓</div>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <p>Cost: {packegeOne.cost}</p>
+        <p>*limited number of sliding scale options are available upon request</p>
+      </div>
+      <a
+        class="transition-all duration-300 rounded-[50px] hover:bg-accent border hover:text-white border-accent px-5 py-2.5 w-full md:w-fit text-center"
+        href='/contact'
+      >
+        Schedule an Interview
+      </a>
+    </div>
   </section>
 </BaseLayout>
