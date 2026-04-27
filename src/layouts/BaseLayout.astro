@@ -6,10 +6,16 @@ import { ClientRouter } from "astro:transitions";
 import "../styles/global.css";
 // @ts-expect-error - side-effect CSS import, no type declarations
 import "@fontsource-variable/montserrat";
+
+const pathname = Astro.url.pathname;
+const theme =
+  pathname === "/acting" || pathname.startsWith("/acting/")
+    ? "acting"
+    : "earthy";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme={theme}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,9 +23,9 @@ import "@fontsource-variable/montserrat";
     <title>Sonnet Lamb{title ? ` - ${title}` : ""}</title>
     <ClientRouter />
   </head>
-  <body class="size-full font-extralight text-[#333333]">
+  <body class="size-full font-light bg-bg text-fg">
     <Header />
-    <main class="bg-birch">
+    <main class="bg-bg">
       <slot />
     </main>
     <Footer />
