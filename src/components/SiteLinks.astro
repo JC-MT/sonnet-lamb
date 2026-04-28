@@ -5,42 +5,25 @@ const isActingSite = pathname.startsWith("/acting");
 type Link = {
   href: string;
   label: string;
-  attr?: Record<string, string>;
 };
 
 let links: Link[] = [];
 
 if (isActingSite) {
   links = [
-    { href: `/acting/reels`, label: "Reels", attr: {} },
-    { href: `/acting/gallery`, label: "Gallery", attr: {} },
-    { href: `/acting/about`, label: "About", attr: {} },
-    { href: `/acting/news`, label: "News", attr: {} },
-    { href: `/acting/contact`, label: "Contact", attr: {} },
-    {
-      href: `/`,
-      label: `Doula`,
-      attr: {
-        "data-astro-reload": "",
-        target: "_blank",
-        rel: "noopener noreferrer",
-      },
-    },
+    { href: `/acting/reels`, label: "Reels" },
+    { href: `/acting/gallery`, label: "Gallery" },
+    { href: `/acting/about`, label: "About" },
+    { href: `/acting/news`, label: "News" },
+    { href: `/acting/contact`, label: "Contact" },
+    { href: `/`, label: `Doula` },
   ];
 } else {
   links = [
-    { href: "/aboutme", label: "About Me", attr: {} },
-    { href: "/services", label: "Services", attr: {} },
-    { href: "/contact", label: "Contact", attr: {} },
-    {
-      href: `/acting`,
-      label: `Acting`,
-      attr: {
-        "data-astro-reload": "",
-        target: "_blank",
-        rel: "noopener noreferrer",
-      },
-    },
+    { href: "/aboutme", label: "About Me" },
+    { href: "/services", label: "Services" },
+    { href: "/contact", label: "Contact" },
+    { href: `/acting`, label: `Acting` },
   ];
 }
 const hamburgerSharedClasses =
@@ -48,7 +31,8 @@ const hamburgerSharedClasses =
 ---
 
 <style>
-  [target="_blank"]:after {
+  [href="/"]:after,
+  [href="/acting"]:after {
     font-size: 8px;
     content: "↗";
   }
@@ -61,7 +45,7 @@ const hamburgerSharedClasses =
     class="group transition-all md:transition-none duration-300 opacity-0 bg-nav data-[active=true]:opacity-100 -z-50 md:z-0 data-[active=true]:fixed data-[active=true]:z-20 text-center pt-32 md:pt-0 absolute justify-center items-center left-0 top-0 h-screen w-screen md:size-full md:opacity-100! md:relative! md:grid md:grid-flow-col"
   >
     {
-      links.map(({ href, label, attr }, idx) => {
+      links.map(({ href, label }, idx) => {
         return (
           <li
             style={`transition-delay: ${idx * 50}ms;`}
@@ -72,7 +56,6 @@ const hamburgerSharedClasses =
               class="text-xl/[50px] md:text-sm px-2.5 aria-[current='page']:underline aria-[current='page']:decoration-1 aria-[current='page']:underline-offset-[6px] aria-[current='page']:decoration-fg"
               href={href}
               data-astro-prefetch="viewport"
-              {...attr}
             >
               {label}
             </a>
@@ -160,6 +143,13 @@ const hamburgerSharedClasses =
     handleViewTransition = () => {
       if (this.activeMenu) this.toggleMenu();
       this.updateLinkStates();
+      this.updateTheme();
+    };
+
+    updateTheme = () => {
+      const { pathname } = window.location;
+      const isActing = pathname === "/acting" || pathname.startsWith("/acting/");
+      document.documentElement.dataset.theme = isActing ? "acting" : "earthy";
     };
 
     disconnectedCallback() {
