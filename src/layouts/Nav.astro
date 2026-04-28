@@ -4,7 +4,7 @@ const isActingSite = pathname.startsWith("/acting");
 import SiteLinks from "../components/SiteLinks.astro";
 ---
 
-<header class:list={ [isActingSite ? 'z-50' : '', 'w-full top-0 bg-nav relative' ] }>
+<header class:list={ [isActingSite ? 'md:z-50' : '', 'w-full top-0 bg-nav relative' ] }>
   <div
     class="bg-nav w-full max-w-7xl mx-auto flex justify-between items-center p-5 md:py-7 relative"
   >
