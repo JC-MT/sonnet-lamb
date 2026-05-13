@@ -8,7 +8,6 @@ import "../styles/global.css";
 // @ts-expect-error - side-effect CSS import, no type declarations
 import "@fontsource-variable/montserrat";
 
-const siteTitle = `Sonnet Lamb${title ? ` - ${title}` : ""}`;
 const pathname = Astro.url.pathname;
 const theme =
   pathname === "/acting" || pathname.startsWith("/acting/")
@@ -19,7 +18,7 @@ const theme =
 <!doctype html>
 <html lang="en" data-theme={theme}>
   <head>
-    <Head title={siteTitle} description={description} />
+    <Head title={title} description={description} />
     <ClientRouter />
   </head>
   <body class="size-full font-light bg-bg text-fg">
