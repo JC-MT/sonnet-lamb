@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import tailwindcss from "@tailwindcss/vite";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://www.sonnetlamb.com",
@@ -12,9 +13,6 @@ export default defineConfig({
   adapter: netlify({
     imageCDN: false,
   }),
-  image: {
-    domains: ["cdn.shopify.com"],
-  },
   prefetch: true,
   vite: {
     plugins: [
@@ -26,4 +24,5 @@ export default defineConfig({
       cssMinify: true,
     },
   },
+  integrations: [sitemap()],
 });
