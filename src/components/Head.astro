@@ -1,18 +1,87 @@
 ---
-const { title, description } = Astro.props;
+const { title, description, image, imageAlt } = Astro.props;
+
+const siteUrl = Astro.site!.href.replace(/\/$/, "");
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(image ?? "/og-image.jpg", Astro.site).href;
+const isActing = Astro.url.pathname.startsWith("/acting");
+
+const siteTitle = !title
+  ? "Sonnet Lamb"
+  : isActing
+    ? `Sonnet Lamb | ${title}`
+    : `${title} | Sonnet Lamb`;
+
+const defaultOgImageAlt = isActing
+  ? "Sonnet Lamb - Singer, Actor, Dancer"
+  : "Newborn baby in a yellow sun romper - Sonnet Lamb, Christian Birth Doula NYC";
+const ogImageAlt = imageAlt ?? defaultOgImageAlt;
+
+const sharedSchema = {
+  "@context": "https://schema.org",
+  url: siteUrl,
+  image: ogImageUrl,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "New York",
+    addressRegion: "NY",
+    addressCountry: "US",
+  },
+  sameAs: [
+    "https://www.facebook.com/sonnet.lamb",
+    "https://www.instagram.com/sonnetlamb",
+  ],
+};
+
+const jsonLd = isActing
+  ? {
+      ...sharedSchema,
+      "@type": "Person",
+      "@id": `${siteUrl}/acting#person`,
+      name: "Sonnet Lamb",
+      jobTitle: "Singer, Actor, Dancer",
+      description:
+        "Professional singer, actor, and dancer based in New York City.",
+    }
+  : {
+      ...sharedSchema,
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}#business`,
+      name: "Sonnet Lamb - Christian Birth Doula",
+      description:
+        "Christian birth doula serving New York City families through pregnancy, birth, and postpartum.",
+      areaServed: { "@type": "City", name: "New York City" },
+      priceRange: "Contact for pricing",
+    };
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={canonicalUrl} />
 <link rel="sitemap" href="/sitemap-index.xml" />
-<title>{title}</title>
+<title>{siteTitle}</title>
 <meta name="description" content={description} />
-<meta property="og:title" content={title} />
+
+<meta property="og:site_name" content="Sonnet Lamb" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content={siteTitle} />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://sonnetlamb.com/" />
+<meta property="og:url" content={canonicalUrl} />
 <meta property="og:description" content={description} />
-<meta
-  property="og:image"
-  content="https://sonnetlamb.com/_astro/IMG_2760_jpg.DijcBNwV_Z1GFWsd.webp"
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={ogImageAlt} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={siteTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<script
+  is:inline
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
 />
-<meta property="og:image:alt" content="Sonnet Lamb - Christian Birth Doula" />
