@@ -1,6 +1,6 @@
 media:
-  input: src/media
-  output: /media
+  input: src/assets/doula
+  output: src/assets/doula
 content:
   - name: posts
     label: Posts
