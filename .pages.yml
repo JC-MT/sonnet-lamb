@@ -1,6 +1,13 @@
 media:
+  name: Images
   input: src/assets/doula
   output: src/assets/doula
+  commit:
+    templates:
+      create: "chore(media): add {filename}"
+      update: "chore(media): update {filename}"
+      delete: "chore(media): remove {filename}"
+      rename: "chore(media): rename {oldFilename} -> {newFilename}"
 content:
   - name: posts
     label: Posts
