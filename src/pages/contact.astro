@@ -1,36 +1,32 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import DoulaForm from "../components/DoulaForm.astro";
-import { Image } from 'astro:assets';
-import harvest from "./../assets/doula/000493880025.jpg";
+import { Image } from "astro:assets";
+import content from "../content/doula/contact.json";
+const images = import.meta.glob("../assets/doula/*", { eager: true }) as Record<
+  string,
+  { default: ImageMetadata }
+>;
+const mainImage = images[content.image]?.default;
 ---
 
 <BaseLayout
-  title="Contact"
-  description="Sonnet Lamb - New York City based Christian Birth Doula. Here you can find ways to reach out to Sonnet Lamb for inquiries, collaborations, or feedback."
+  title={content.seo.title}
+  description={content.seo.description}
 >
-  <section class="w-full bg-bg h-full flex flex-col md:flex-row max-w-7xl mx-auto px-5 pb-5 gap-5 md:gap-10 lg:gap-16">
+  <section
+    class="w-full h-full flex flex-col md:flex-row max-w-6xl mx-auto px-5 pb-5 gap-5 md:gap-10 lg:gap-16"
+  >
     <div class="flex flex-col gap-4 md:gap-10 md:w-1/2">
       <div class="w-full flex justify-center flex-col gap-2">
-        <h2 class="text-3xl md:text-5xl font-extralight">Thank you for your interest!</h2>
-        <div class="grid gap-2">
-          <p class="text-base md:text-xl">
-            Fill out the form below to inquire about your family's needs, availability and schedule your complimentary interview. 
-          </p>
-          <a
-            href="mailto:sayhello@sonnetlamb.com"
-            rel="noopener"
-          >
-            sayhello@sonnetlamb.com
-          </a>
-        </div>
+        <div class="grid gap-2 prose" set:html={content.content} />
       </div>
       <div class="gap-5 hidden md:grid">
         <Image
           class="h-80 object-cover rounded-lg"
           layout="constrained"
-          src={harvest}
-          alt="Sonnet Lamb Posing"
+          src={mainImage}
+          alt="Image by Sonnet Lamb"
         />
       </div>
     </div>
@@ -41,8 +37,8 @@ import harvest from "./../assets/doula/000493880025.jpg";
       <Image
         class="h-full object-cover rounded-lg"
         layout="constrained"
-        src={harvest}
-        alt="Sonnet Lamb Posing"
+        src={mainImage}
+        alt="Image by Sonnet Lamb"
       />
     </div>
   </section>

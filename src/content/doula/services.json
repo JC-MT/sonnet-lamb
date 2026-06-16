@@ -1,0 +1,20 @@
+{
+  "services": [
+    {
+      "name": "Birth Package",
+      "image": "../assets/doula/IMG_2786_jpg.jpg",
+      "includes": [
+        "2 Prenatal Visits",
+        "1 Virtual Childbirth Education Class",
+        "Birth",
+        "1 Postpartum Visit"
+      ],
+      "cost": 2500,
+      "information": "*limited number of sliding scale options are available upon request"
+    }
+  ],
+  "seo": {
+    "title": "Doula Services | Sonnet Lamb",
+    "description": "Sonnet Lamb - New York City based Christian Birth Doula. Here you can find information about the doula services offered by Sonnet Lamb."
+  }
+}
