@@ -8,18 +8,22 @@
   --color-muted: var(--muted);
   --color-nav: var(--nav);
   --color-footer: var(--footer);
+  --color-mobile-nav: var(--mobile-nav);
   --font-sans: "Montserrat Variable", sans-serif;
   --ease-hamburger: 0.2, 0.6, 0.3, 1;
 }
 
 :root,
 [data-theme="earthy"] {
-  --bg: #feedbb;
+  background-color: #feedbb;
+  --bg: transparent;
+  --bg-gradient: linear-gradient(135deg, #fddc6e 0%, #feedbb 70%, #fff8e0 100%);
   --surface: #fff8e0;
   --fg: #000000;
-  --accent: #C88F40;
+  --accent: #c88f40;
   --muted: #8a7350;
-  --nav: #feedbb;
+  --nav: transparent;
+  --mobile-nav: #feedbb;
   --footer: #f9db7b;
 }
 
@@ -30,5 +34,32 @@
   --accent: #96c0e7;
   --muted: #666666;
   --nav: #ffffff;
+  --mobile-nav: #ffffff;
   --footer: #efefef;
+}
+
+.prose h1 {
+  @apply text-3xl md:text-5xl font-extralight;
+}
+.prose blockquote {
+  @apply italic text-center text-balance;
+}
+.prose p {
+  @apply text-base md:text-xl;
+}
+
+[data-theme="earthy"] ::-moz-selection {
+  background-color: #c88f40;
+}
+
+[data-theme="earthy"] ::selection {
+  background-color: #c88f40;
+}
+
+[data-theme="acting"] ::-moz-selection {
+  background-color: #efefef;
+}
+
+[data-theme="acting"] ::selection {
+  background-color: #efefef;
 }

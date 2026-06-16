@@ -1,35 +1,115 @@
 media:
-  name: Images
+  name: images
+  label: Doula Images
   input: src/assets/doula
-  output: src/assets/doula
+  output: ../assets/doula
   commit:
     templates:
       create: "chore(media): add {filename}"
       update: "chore(media): update {filename}"
       delete: "chore(media): remove {filename}"
       rename: "chore(media): rename {oldFilename} -> {newFilename}"
-content:
-  - name: posts
-    label: Posts
-    type: collection
-    path: src/posts
+components:
+  seo:
+    type: object
+    label: SEO
     fields:
       - name: title
-        type: string
-      - name: body
-        type: rich-text
-  - name: site
-    label: Site settings
-    type: file
-    path: src/_data/site.json
-    fields:
-      - name: title
+        label: Title
         type: string
       - name: description
+        label: Description
         type: text
-      - name: url
+content:
+  - name: homepage
+    label: Home Page
+    type: file
+    path: src/content/doula/homepage.json
+    fields:
+      - name: image
+        label: Image
+        type: image
+      - name: overImageTitle
+        label: Over Image Title
         type: string
-actions:
-  - name: deploy-site
-    label: Deploy site
-    workflow: pages-cms-action.yml
+      - name: overImageProps
+        label: Over Image props
+        type: string
+        list: true
+      - name: eyebrow
+        label: Eyebrow Text
+        type: string
+      - name: oneLinerText
+        label: One Liner Text
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: seo
+        component: seo
+        label: Meta
+  - name: aboutme
+    label: About Me
+    type: file
+    path: src/content/doula/aboutme.json
+    fields:
+      - name: content
+        label: content
+        type: rich-text
+        options:
+          format: html
+      - name: images
+        label: Images
+        type: image
+        list: true
+      - name: seo
+        component: seo
+        label: Meta
+  - name: services
+    label: Services
+    type: file
+    path: src/content/doula/services.json
+    fields:
+      - name: services
+        label: Services
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - name: name
+            label: Name
+            type: string
+          - name: image
+            label: Image
+            type: image
+          - name: includes
+            label: Includes
+            type: string
+            list: true
+          - name: cost
+            label: Cost
+            type: number
+          - name: information
+            label: Information
+            type: text
+      - name: seo
+        component: seo
+        label: Meta
+  - name: contact
+    label: Contact
+    type: file
+    path: src/content/doula/contact.json
+    fields:
+      - name: content
+        label: content
+        type: rich-text
+        options:
+          format: html
+      - name: image
+        label: Image
+        type: image
+      - name: seo
+        component: seo
+        label: Meta
