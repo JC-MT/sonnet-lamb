@@ -20,6 +20,20 @@ components:
       - name: description
         label: Description
         type: text
+  package:
+    type: object
+    label: Package
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: includes
+        label: Includes
+        type: string
+        list: true
+      - name: cost
+        label: Cost
+        type: string
 content:
   - name: homepage
     label: Home Page
@@ -84,15 +98,21 @@ content:
           - name: image
             label: Image
             type: image
-          - name: includes
-            label: Includes
-            type: string
-            list: true
-          - name: cost
-            label: Cost
-            type: number
+          - name: packages
+            label: Packages
+            component: package
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{title}"
           - name: information
             label: Information
+            type: text
+          - name: cta_text
+            label: Button Text
+            type: text
+          - name: cta_url
+            label: Button URL
             type: text
       - name: seo
         component: seo

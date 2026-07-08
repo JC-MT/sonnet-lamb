@@ -28,7 +28,9 @@
 }
 
 [data-theme="acting"] {
+  background-color: #efefef;
   --bg: #efefef;
+  --bg-gradient: linear-gradient(0deg, #efefef 0%, #efefef 100%) !important;
   --surface: #ffffff;
   --fg: #333333;
   --accent: #96c0e7;

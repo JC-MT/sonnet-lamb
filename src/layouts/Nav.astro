@@ -6,7 +6,7 @@ import SiteLinks from "../components/SiteLinks.astro";
 
 <header class:list={ [isActingSite ? 'md:z-50' : '', 'w-full top-0 bg-nav relative' ] }>
   <div
-    class="bg-nav w-full max-w-7xl mx-auto flex justify-between items-center p-5 md:py-7 relative"
+    class={`bg-nav w-full ${isActingSite ? 'max-w-7xl' : 'max-w-6xl'} mx-auto flex justify-between items-center p-5 md:py-7 relative`}
   >
     <a
       class="z-30 relative text-xl md:text-2xl tracking-tight uppercase font-extralight"

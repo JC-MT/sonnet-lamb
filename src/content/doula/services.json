@@ -1,16 +1,72 @@
 {
   "services": [
     {
-      "name": "Birth Package",
-      "image": "../assets/doula/IMG_2786_jpg.jpg",
-      "includes": [
-        "2 Prenatal Visits",
-        "1 Virtual Childbirth Education Class",
-        "Birth",
-        "1 Postpartum Visit"
+      "name": "Birth",
+      "image": "../assets/doula/IMG_2786_croped.jpg",
+      "packages": [
+        {
+          "title": "Birth Essential Package",
+          "includes": [
+            "2 Prenatal Visits",
+            "1 Virtual Childbirth Education Class",
+            "Birth",
+            "1 Postpartum Visit"
+          ],
+          "cost": "$2500"
+        }
       ],
-      "cost": 2500,
-      "information": "*limited number of sliding scale options are available upon request"
+      "information": "Limited number of sliding scale options are available upon request.",
+      "cta_text": "Schedule an Interview",
+      "cta_url": "/contact"
+    },
+    {
+      "name": "Postpartum and Lactation",
+      "image": "../assets/doula/000493880024.jpg",
+      "packages": [
+        {
+          "title": "Lactation Support",
+          "includes": [
+            "Can include breastfeeding education, assistance with latch, establishing plan for return to office, bottle introduction, supply issue, and more"
+          ],
+          "cost": "$50/hr"
+        },
+        {
+          "title": "Postpartum Support",
+          "includes": [
+            "Can include infant care, infant sleep education, light housework related to baby/mom, and more"
+          ],
+          "cost": "$50/hr"
+        }
+      ],
+      "information": "Lactation and Postpartum Support is highly customizable, reach out and we'll prepare the right plan for your needs.",
+      "cta_text": "Schedule a Call",
+      "cta_url": "/contact"
+    },
+    {
+      "name": "Prenatal and Postpartum Fitness",
+      "packages": [
+        {
+          "title": "Prepare, Heal, Strengthen Package",
+          "includes": [
+            "1 Labor Positioning & Movement Session | 60 min, 36-38 weeks ",
+            "1 First Movement After Birth | 60min, 2-4 weeks postpartum",
+            "1 Core & Pelvic Floor Return to Exercise | 60 min, 6-12 weeks postpartum"
+          ],
+          "cost": "$250"
+        },
+        {
+          "title": "1:1 Personal Training Sessions",
+          "includes": [
+            "Individual 60 min training session, either in person or virtually.",
+            "Recommended frequency of 2-3x per week to build consistency and results",
+            "10% discount if purchasing 5 or more sessions"
+          ],
+          "cost": "$100/hr"
+        }
+      ],
+      "information": "1:1 sessions can be added on the Prepare, Heal, Strengthen Package or a la carte. ",
+      "cta_text": "Schedule a Call",
+      "cta_url": "/contact"
     }
   ],
   "seo": {
