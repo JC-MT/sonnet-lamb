@@ -1,0 +1,59 @@
+---
+import { Image } from "astro:assets";
+
+const { galleryImages, containerClass, credentials } = Astro.props;
+const images = import.meta.glob("../assets/doula/*", { eager: true }) as Record<
+  string,
+  { default: ImageMetadata }
+>;
+---
+
+<div class={containerClass}>
+  {
+    galleryImages.map((img: ImageMetadata) => (
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={img}
+        alt="Sonnet Lamb Posing"
+      />
+    ))
+  }
+  <div class="col-span-full grid gap-3 mt-3 md:mt-0">
+    <h3 class="text-3xl/tight md:text-4xl font-extralight text-left">
+      My Credentials
+    </h3>
+    {
+      credentials
+        ? credentials.map(
+            (cred: {
+              title: string;
+              location: string;
+              logo: string;
+              description: string;
+            }) => (
+              <div class="grid gap-1">
+                <h4 class="font-medium text-lg tracking-tight">{cred.title}</h4>
+                <div class="flex items-center gap-2">
+                  {cred.logo && (
+                    <Image
+                      src={images[cred.logo]?.default}
+                      alt="Sonnet Lamb"
+                      class="size-10 rounded-full object-cover"
+                      layout="constrained"
+                    />
+                  )}
+                  <h5>{cred.location}</h5>
+                </div>
+                <div
+                  class="flex flex-col gap-2 md:gap-5 text-left prose"
+                  data-html
+                  set:html={cred.description}
+                />
+              </div>
+            ),
+          )
+        : null
+    }
+  </div>
+</div>

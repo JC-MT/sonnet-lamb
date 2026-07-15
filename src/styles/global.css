@@ -50,6 +50,10 @@
   @apply text-base md:text-xl;
 }
 
+.prose a {
+  @apply underline decoration-dotted;
+}
+
 [data-theme="earthy"] ::-moz-selection {
   background-color: #c88f40;
 }
