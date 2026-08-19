@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
+import react from '@astrojs/react';
 
 export default defineConfig({
   site: "https://sonnetlamb.com",
@@ -24,5 +25,5 @@ export default defineConfig({
       cssMinify: true,
     },
   },
-  integrations: [sitemap()],
+  integrations: [sitemap(), react()],
 });
