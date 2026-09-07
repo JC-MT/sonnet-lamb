@@ -10,12 +10,12 @@
   "credentials": [
     {
       "title": [
-        "Labor and Postpartum Doula (CBD, CPD) - in progress",
+        "Labor and Postpartum Doula (CLD, CPD) - in progress",
         "Lactation Support and Educator (CLSE) - in progress"
       ],
       "logo": "../assets/doula/maternitywise logo.avif",
       "location": "MaternityWise Institute",
-      "description": "<p><a href=\"https://www.maternitywise.com/\" target=\"_blank\" rel=\"noopener\">MaternityWise</a> is a unique internationally recognized organization that focuses on intuitive wisdom challenging the status quo to improve maternity care everywhere.</p>"
+      "description": "<p><a target=\"_blank\" rel=\"noopener\" href=\"https://www.maternitywise.com/\">MaternityWise</a> is a unique internationally recognized organization that focuses on intuitive wisdom challenging the status quo to improve maternity care everywhere.</p>"
     }
   ],
   "seo": {
