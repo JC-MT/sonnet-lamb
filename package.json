@@ -20,6 +20,7 @@
     "@emailjs/browser": "^4.4.1",
     "@fontsource-variable/montserrat": "^5.2.5",
     "astro": "^7.1.0",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4.1.3"
   }
 }
