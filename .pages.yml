@@ -34,6 +34,25 @@ components:
       - name: cost
         label: Cost
         type: string
+  credential:
+    type: object
+    label: Credentials
+    fields:
+      - name: title
+        label: Title
+        type: string
+        list: true
+      - name: logo
+        label: Logo
+        type: image
+      - name: location
+        label: Location
+        type: string
+      - name: description
+        label: Description
+        type: rich-text
+        options:
+          format: html
 content:
   - name: homepage
     label: Home Page
@@ -76,6 +95,13 @@ content:
         label: Images
         type: image
         list: true
+      - name: credentials
+        component: credential
+        label: Credential
+        list: 
+          collapsible:
+            collapsed: true
+            summary: "{location}"
       - name: seo
         component: seo
         label: Meta

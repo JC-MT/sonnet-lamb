@@ -28,7 +28,7 @@ const images = import.meta.glob("../assets/doula/*", { eager: true }) as Record<
           )}
           <div class="w-full flex text-left flex-col gap-2 p-3">
             <div class="grid gap-2">
-              <h3 class="text-3xl/tight font-extralight text-pretty">
+              <h3 class="text-3xl/tight font-extralight text-pretty tracking-tight">
                 {service?.name}
               </h3>
               <hr class="border-t border-accent" />
@@ -39,7 +39,7 @@ const images = import.meta.glob("../assets/doula/*", { eager: true }) as Record<
                   {service?.packages.map((item) => (
                     <div class="grid gap-1.5">
                       {item?.title && (
-                        <p class="font-medium text-lg">{item.title}</p>
+                        <p class="font-medium text-lg tracking-tight">{item.title}</p>
                       )}
                       {item?.includes?.length > 0 && (
                         <ul class="list-disc list-inside grid gap-1">

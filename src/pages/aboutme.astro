@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+import DoulaGallery from "../components/DoulaGallery.astro";
 import content from "./../content/doula/aboutme.json";
 const images = import.meta.glob("../assets/doula/*", { eager: true }) as Record<
   string,
@@ -24,35 +25,86 @@ const galleryImages = content.images
         src={mainImage}
         priority
       />
-      <div class="hidden gap-5 md:grid grid-cols-2">
-        {
-          galleryImages.map((img) => (
-            <Image
-              class="h-full object-cover rounded-lg"
-              layout="constrained"
-              src={img}
-              alt="Sonnet Lamb Posing"
-            />
-          ))
-        }
-      </div>
+      <DoulaGallery
+        galleryImages={galleryImages}
+        credentials={content.credentials}
+        containerClass="hidden gap-5 md:grid grid-cols-2"
+      />
     </div>
     <div
       class="flex flex-col gap-3 md:gap-5 max-w-2xl text-left prose [&>h1]:text-center"
       data-html
       set:html={content.content}
     />
-    <div class="md:hidden gap-2 grid grid-cols-2">
-      {
-        galleryImages.map((img) => (
-          <Image
-            class="h-full object-cover rounded-lg"
-            layout="constrained"
-            src={img}
-            alt="Sonnet Lamb Posing"
-          />
-        ))
-      }
-    </div>
+    <DoulaGallery
+      galleryImages={galleryImages}
+      credentials={content.credentials}
+      containerClass="md:hidden gap-2 grid grid-cols-2"
+    />
   </section>
+  <script>
+    // Number → word for the years-married count (small, slowly growing).
+    const NUMBER_WORDS = [
+      "zero",
+      "one",
+      "two",
+      "three",
+      "four",
+      "five",
+      "six",
+      "seven",
+      "eight",
+      "nine",
+      "ten",
+      "eleven",
+      "twelve",
+      "thirteen",
+      "fourteen",
+      "fifteen",
+      "sixteen",
+      "seventeen",
+      "eighteen",
+      "nineteen",
+      "twenty",
+      "twenty-one",
+      "twenty-two",
+      "twenty-three",
+      "twenty-four",
+    ];
+
+    class HarvestAge extends HTMLElement {
+      static BIRTH_YEAR = 2024;
+      static BIRTH_MONTH = 7;
+
+      connectedCallback() {
+        const now = new Date();
+        const months =
+          (now.getFullYear() - HarvestAge.BIRTH_YEAR) * 12 +
+          (now.getMonth() - HarvestAge.BIRTH_MONTH);
+
+        if (months < 0) return;
+
+        if (months < 24) {
+          this.textContent = `${months} month old`;
+        } else {
+          const years = Math.floor(months / 12);
+          this.textContent = `${years} year old`;
+        }
+      }
+    }
+
+    class MarriedYears extends HTMLElement {
+      static MARRIED_YEAR = 2021;
+
+      connectedCallback() {
+        const now = new Date();
+        const years = now.getFullYear() - MarriedYears.MARRIED_YEAR;
+        this.textContent = this.toWords(years);
+      }
+      toWords = (number: number) => NUMBER_WORDS[number] ?? String(number);
+    }
+
+    customElements.define("harvest-age", HarvestAge);
+    customElements.define("married-years", MarriedYears);
+  </script>
 </BaseLayout>
