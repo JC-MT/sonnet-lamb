@@ -50,6 +50,10 @@
   @apply text-base md:text-xl;
 }
 
+.prose a {
+  @apply underline decoration-dotted hover:text-accent transition-colors duration-300;
+}
+
 [data-theme="earthy"] ::-moz-selection {
   background-color: #c88f40;
 }

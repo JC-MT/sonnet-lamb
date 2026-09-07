@@ -1,0 +1,67 @@
+---
+import { Image } from "astro:assets";
+
+const { galleryImages, containerClass, credentials } = Astro.props;
+const images = import.meta.glob("../assets/doula/*", { eager: true }) as Record<
+  string,
+  { default: ImageMetadata }
+>;
+---
+
+<div class={containerClass}>
+  {
+    galleryImages.map((img: ImageMetadata) => (
+      <Image
+        class="h-full object-cover rounded-lg"
+        layout="constrained"
+        src={img}
+        alt="Sonnet Lamb Posing"
+      />
+    ))
+  }
+  <div class="col-span-full grid gap-2 mt-2 md:mt-5">
+    <h2 class="text-2xl/tight md:text-4xl font-extralight text-left">
+      Certifications and Training
+    </h2>
+    {
+      credentials
+        ? credentials.map(
+            (cred: {
+              title: string[];
+              location: string;
+              logo: string;
+              description: string;
+            }) => (
+              <div class="grid gap-2">
+                <div class="flex items-start gap-2">
+                  {cred.logo && (
+                    <Image
+                      src={images[cred.logo]?.default}
+                      alt="Sonnet Lamb"
+                      class="size-10 rounded-full object-cover border border-accent shadow-sm"
+                      layout="constrained"
+                    />
+                  )}
+                  <div class="grid gap-0.5">
+                    <h4 class="text-sm">{cred.location}</h4>
+                    <div class="grid">
+                      {cred.title.map((t: string) => (
+                        <h5 class="font-medium text-base tracking-tight">
+                          {t}
+                        </h5>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex flex-col gap-2 md:gap-5 text-left prose"
+                  data-html
+                  set:html={cred.description}
+                />
+              </div>
+            ),
+          )
+        : null
+    }
+  </div>
+</div>
