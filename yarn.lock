@@ -76,20 +76,6 @@
   resolved "https://registry.yarnpkg.com/@astrojs/compiler/-/compiler-2.13.0.tgz#a40bef3106fff808bd91b41680275a7e28996d63"
   integrity sha512-mqVORhUJViA28fwHYaWmsXSzLO9osbdZ5ImUfxBarqsYdMlPbqAqGJCxsNzvppp1BEzc1mJNjOVvQqeDN8Vspw==
 
-"@astrojs/internal-helpers@0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@astrojs/internal-helpers/-/internal-helpers-0.10.1.tgz#3f96b64cf73d39199b1a70909de488a005c50776"
-  integrity sha512-5phcroT/vmOOrYuuAxtkbPixy5hePtlz9i8K4OeDv3dNK6/UQRuXPOSRTxIOBbUY5Sonw2UaxjbuVc43Mcir6Q==
-  dependencies:
-    "@types/hast" "^3.0.4"
-    "@types/mdast" "^4.0.4"
-    js-yaml "^4.1.1"
-    picomatch "^4.0.4"
-    retext-smartypants "^6.2.0"
-    shiki "^4.0.2"
-    smol-toml "^1.6.0"
-    unified "^11.0.5"
-
 "@astrojs/internal-helpers@0.10.4":
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/@astrojs/internal-helpers/-/internal-helpers-0.10.4.tgz#2974e67370f346a922af112c7c6bdc85135b96ac"
@@ -114,13 +100,13 @@
     github-slugger "^2.0.0"
     satteri "^0.10.3"
 
-"@astrojs/netlify@^8.1.2":
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/@astrojs/netlify/-/netlify-8.1.2.tgz#7ea6dad79a0938643ec4c37935f5441dabf4484e"
-  integrity sha512-Eiff9qt3bzxqPsRlFIRYb7dCkPFNZneFOA9civif90rx2PO2Nvao9gQiBvHBcA7+awlUeiAXTfV1aJhlQ5lw5w==
+"@astrojs/netlify@^8.2.4":
+  version "8.2.4"
+  resolved "https://registry.yarnpkg.com/@astrojs/netlify/-/netlify-8.2.4.tgz#f2646a851a923a5ae8292b2f3dab485c66c4015a"
+  integrity sha512-g7e0IM+7nD1EX14TL7dFTnXZFK7qQ7aFfdZnYZA7UjBO7hfByqjqEqXxyGdbFfPZGTf4ioccI/3hvnn5iodYDw==
   dependencies:
-    "@astrojs/internal-helpers" "0.10.1"
-    "@astrojs/underscore-redirects" "1.0.3"
+    "@astrojs/internal-helpers" "0.10.4"
+    "@astrojs/underscore-redirects" "1.0.4"
     "@netlify/blobs" "^10.7.4"
     "@netlify/functions" "^5.2.0"
     "@netlify/vite-plugin" "^2.12.3"
@@ -155,10 +141,10 @@
     is-docker "^4.0.0"
     package-manager-detector "^1.6.0"
 
-"@astrojs/underscore-redirects@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@astrojs/underscore-redirects/-/underscore-redirects-1.0.3.tgz#8080202dea6e85bcba058565d13ce1a99ce43f36"
-  integrity sha512-cxnGSw+sJigBLdX4TMSZKkzV6C3gMLJMucDk2W+n281Xhie68T2/9f1+1NMNDCZsc5i0FED7Qt5I10g2O9wtZg==
+"@astrojs/underscore-redirects@1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@astrojs/underscore-redirects/-/underscore-redirects-1.0.4.tgz#7726a66ff5b1e20f88c563b556e1bab580a50ee1"
+  integrity sha512-sD3bn7i2yC+ocxlhCTshdg3gUM471Nag3wgyHilA+kpmufokvmUu1p5Mw5GT5Xp8SPC1Nlq0BJAgV/lslnWvRw==
 
 "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.26.2":
   version "7.29.7"
@@ -4403,7 +4389,7 @@ js-tokens@^4.0.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-yaml@^4.1.1, js-yaml@^4.3.0:
+js-yaml@^4.3.0:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.3.2.tgz#8e44fb14a2643c59726bb15787b5f1512cb3d3fb"
   integrity sha512-SFNOvSJ+Dgf/9An904Yx+CgSlIPCkIpao4qo51lpee25TIRejdH3rhR4EZMGoNx3/TP3O+wzWuiTFl4sqbltzA==
